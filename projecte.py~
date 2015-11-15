@@ -1,8 +1,0 @@
-from skimage import data, io, filters
-imagen = io.imread(people.jpg)
-"""
-image = data.p() # or any NumPy array!
-edges = filters.sobel(image)
-io.imshow(edges)
-io.show()"""
-
