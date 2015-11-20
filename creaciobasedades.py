@@ -12,6 +12,7 @@ infile_train = open(ruta+'/TerrassaBuildings900/train/annotation.txt','r')
 outfile_train = open(ruta+'/outfile_train.txt','w') # Creem un fitxer per guardar les id's de train
 it = islice(infile_train,1,None) #Salta la primera linia del fitxer .txt
 for line in it:
-    outfile_train.write(line.strip("\t")) # Assignem cada linea a una entrada de l'array
+    final = line.index("\t")
+    outfile_train.write(line[0:final]+"\n") # Assignem cada linea a una entrada de l'array
 
 """ VALIDATION IMAGES """
