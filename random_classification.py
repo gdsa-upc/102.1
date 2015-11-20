@@ -4,14 +4,6 @@ import random #carreguem la llibreria d'aleatori
 from itertools import islice
 
 ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
-
-def random_line(afile):
-    line = next(afile)
-    for num, aline in enumerate(afile):
-      if random.randrange(num + 2): continue
-      line = aline
-    return line
-    
 def random_classification(features,save_to,labels):
     infile_features = open(features,'r') #obrim el fitxer on estan les features
     infile_labels = open(labels,'r') #obrim el fitxer on estan les possibles labels
@@ -20,8 +12,8 @@ def random_classification(features,save_to,labels):
     it = islice(infile_features,1,None) #Salta la primera linia del fitxer .txt
     for line in it:
         tabulacio = line.index("\t") #busca la posicio on es troba el tabulador a la linia
-        outfile.write("\n"+line[0:tabulacio]+"\t") # Posem un salt de linea i l'image ID actual
-        outfile.write(random_line(infile_labels))
+        random_lines = random.choice(open(labels).readlines())# Busquem una linea aleatoria en labels.txt
+        outfile.write(line[0:tabulacio]+"\t"+random_lines) # Posem un salt de linea i l'image ID actual
     outfile.close()
         
-random_classification(ruta+'/TerrassaBuildings900/train/annotation.txt',ruta+"/Resultados", ruta+"/TerrassaBuildings900/labels.txt"); #creacio train database
+random_classification(ruta+'/TerrassaBuildings900/train/annotation.txt',ruta+"/files", ruta+"/files/labels.txt"); #crida a funció random_classification.
