@@ -49,7 +49,7 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
         MAP_train = suma_train/sum_elems #Fem la peració per obtenir aquest valor
         Final_file2.append(MAP_train) #Introduïm el valor resultant dintre del array creat
         #A Continuació esciurem el valor resultant del MAP dintre del fitxer de sortida
-        Final_file2_train.write(line[0:endline] + "For Query "+line+":\t" + "Mean_AVerage_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
+        Final_file2_train.write(line[0:endline] + "For Query "+line+":\t" + "Mean_Average_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
     Final_file_train.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
     Final_file2_train.close() #Tanquem el ftixer per on hem esccrit els valors del MAP resultants per cada línia
     
@@ -62,7 +62,7 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
         MAP_valid = suma_valid/sum_elems #Fem la peració per obtenir aquest valor
         Final_file2.append(MAP_valid) #Introduïm el valor resultant dintre del array creat
         #A Continuació esciurem el valor resultant del MAP dintre del fitxer de sortida
-        Final_file2_valid.write(line[0:endline] + "For Query "+line+":\t" + "Man_AVerage_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
+        Final_file2_valid.write(line[0:endline] + "For Query "+line+":\t" + "Mean_Average_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
     Final_file_valid.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
     Final_file2_valid.close() #Tanquem el ftixer per on hem esccrit els valors del lMAP resultants per cada línia
 
