@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 # Creació de la funció "evaluate_ranking.py". Feta per: Eric Díaz Cívico.
 import numpy as np
-import cv2
 import matplotlib.pyplot as plt
 import os # Carreguem la llibreria corresponent a la funció de introducció de
 # rutes absolutes d'un fitxer
-from itertools import islice
 from sklearn.metrics import average_precision_score
 
 
@@ -62,7 +60,7 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
         for element in line:
             suma_valid = (sum(line))
             sum_elems = (sum(element))
-        print("Aps d'entrenament sumats!")
+        print("Aps de validació sumats!")
         Final_file2 = [] #Creem el array necessari per col·locar el valor del MAP
         MAP_valid = suma_valid/sum_elems #Fem la peració per obtenir aquest valor
         Final_file2.append(MAP_valid) #Introduïm el valor resultant dintre del array creat
@@ -73,5 +71,3 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
 
 Evaluate_Ranking("features_train.txt","train")
 Evaluate_Ranking("features_valid.txt","valid")
-
-
