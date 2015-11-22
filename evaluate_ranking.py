@@ -27,7 +27,7 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
             APt = average_precision_score(Direct_llista,fitxer_anot)
             Final_file.append(APt)
             # A continuació escriurem en el fitxer cada línia de les APS per les imatges d'entrenament
-            Final_file_train.write(line[0:final] + "For Query "+line+":\t" + str(Final_File).replace("\n","").replace("[[","").replace("]]","") + "\n")
+            Final_file_train.write(line[0:final] + "Query "+line+":\t" + str(Final_File).replace("\n","").replace("[[","").replace("]]","") + "\n")
         else:
             fitxer_anot = "annotation_valid.txt"
             APv = average_precision_score(Direct_llista,fitxer_anot)
@@ -43,10 +43,10 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
             sum_elems = (sum(element))
         print("Aps d'entrenament sumats!")
         Final_file2 = [] #Creem el array necessari per col·locar el valor del MAP
-        MAP_train = suma_train/suma_elems #Fem la peració per obtenir aquest valor
+        MAP_train = suma_train/sum_elems #Fem la peració per obtenir aquest valor
         Final_file2.append(MAP_train) #Introduïm el valor resultant dintre del array creat
         #A Continuació esciurem el valor resultant del MAP dintre del fitxer de sortida
-        Final_file2_train.write(line[0:final] + "For Query "+line+":\t" + "Mean_AVerage_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
+        Final_file2_train.write(line[0:final] + "For Query "+line+":\t" + "Mean_Average_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
     Final_file_train.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
     Final_file2_train_close() #Tanquem el ftixer per on hem esccrit els valors del MAP resultants per cada línia
     
@@ -57,10 +57,10 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
             sum_elems = (sum(element))
         print("Aps d'entrenament sumats!")
         Final_file2 = [] #Creem el array necessari per col·locar el valor del MAP
-        MAP_valid = suma_valid/suma_elems #Fem la peració per obtenir aquest valor
+        MAP_valid = suma_valid/sum_elems #Fem la peració per obtenir aquest valor
         Final_file2.append(MAP_valid) #Introduïm el valor resultant dintre del array creat
         #A Continuació esciurem el valor resultant del MAP dintre del fitxer de sortida
-        Final_file2_valid.write(line[0:final] + "For Query "+line+":\t" + "Man_AVerage_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
+        Final_file2_valid.write(line[0:final] + "For Query "+line+":\t" + "Mean_Average_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
     Final_file_valid.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
     Final_file2_valid_close() #Tanquem el ftixer per on hem esccrit els valors del lMAP resultants per cada línia
 
