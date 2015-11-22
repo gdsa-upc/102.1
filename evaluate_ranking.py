@@ -2,6 +2,7 @@
 # Creació de la funció "evaluate_ranking.py". Feta per: Eric Díaz Cívico.
 import numpy as np
 import cv2
+import sys
 import matplotlib.pyplot as plt
 import os # Carreguem la llibreria corresponent a la funció de introducció de
 # rutes absolutes d'un fitxer
