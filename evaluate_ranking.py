@@ -58,7 +58,7 @@ def Evaluate_Ranking(Direct_llista_t,Direct_llista_v,train_or_val): #Funció dec
         #A Continuació esciurem el valor resultant del MAP dintre del fitxer de sortida
         Final_file2_train.write(line[0:final] + "For Query "+line+":\t" + "Mean_Average_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
     Final_file_train.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
-    Final_file2_train.close() #Tanquem el ftixer per on hem esccrit els valors del MAP resultants per cada línia
+    Final_file2_train.close() #Tanquem el fitxer per on hem esccrit els valors del MAP resultants per cada línia
     
     for line in Final_file_valid:
         for element in line:
@@ -71,6 +71,6 @@ def Evaluate_Ranking(Direct_llista_t,Direct_llista_v,train_or_val): #Funció dec
         #A Continuació esciurem el valor resultant del MAP dintre del fitxer de sortida
         Final_file2_valid.write(line[0:final] + "For Query "+line+":\t" + "Mean_Average_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
     Final_file_valid.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
-    Final_file2_valid.close() #Tanquem el ftixer per on hem esccrit els valors del lMAP resultants per cada línia
+    Final_file2_valid.close() #Tanquem el fitxer per on hem esccrit els valors del lMAP resultants per cada línia
 
 Evaluate_Ranking("features_train.p","features_valid.p","train")
