@@ -3,6 +3,7 @@
 import numpy as np
 import os # Carreguem la llibreria corresponent a la funció de introducció de
 # rutes absolutes d'un fitxer
+import math
 from sklearn.metrics import label_ranking_average_precision_score
 
 ruta_abs = os.path.dirname(os.path.abspath(__file__)) #Obtenim la ruta absoluta de la carpeta on es troben els fitxers
