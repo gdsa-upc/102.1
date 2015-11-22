@@ -6,10 +6,9 @@ import os # Carreguem la llibreria corresponent a la funció de introducció de
 from sklearn.metrics import label_ranking_average_precision_score
 
 ruta_abs = os.path.dirname(os.path.abspath(__file__)) #Obtenim la ruta absoluta de la carpeta on es troben els fitxers
-Direct_llista_t = open(ruta_abs+'\\files\\features_train.p','r') #Llegim els fitxer de la llista per entrenament
-Direct_llista_v = open(ruta_abs+'\\files\\features_val.p','r') #Llegim els fitxer de la llista per validació
+Direct_llista = open(ruta_abs+"\\files\\ranking_val",'r') #Llegim els fitxer de la llista per entrenament
 
-def Evaluate_Ranking(Direct_llista_t,Direct_llista_v,train_or_val): #Funció declarada passant com a paràmetres 
+def Evaluate_Ranking(Direct_llista,train_or_val): #Funció declarada passant com a paràmetres 
 
     fitxer_anot = open(ruta_abs+"\TerrassaBuildings900\\train\Annotation_"+train_or_val+".txt",'r') #Obrim els arxius 
     # d'annotació en funció del valor de 'train_or_val')
@@ -23,27 +22,23 @@ def Evaluate_Ranking(Direct_llista_t,Direct_llista_v,train_or_val): #Funció dec
     Final_file2_valid = open(ruta_abs+"\\files\\final_file2_valid.txt" ,'w') #Obrim l'arxiu on escriurem el MAP per cada consulta de validació
     
     
-    for line in Direct_llista_t:
+    for line in Direct_llista:
         Final_file = np.random.rand(1,180) #Obrim el vector aleatori on s'inclouran el total de APs per cada consulta
         final = line.index("\n") #Indicació del final de línea de casa vector de AP's
         if train_or_val == "train":
             fitxer_anot = "annotation_valid.txt"
-            APt = label_ranking_average_precision_score(Direct_llista_t,fitxer_anot)
+            APt = label_ranking_average_precision_score(Direct_llista,fitxer_anot)
             Final_file.append(APt)
             # A continuació escriurem en el fitxer cada línia de les APS per les imatges d'entrenamen
             Final_file_train.write(line[0:final] + "For Query "+line+":\t" + str(Final_file).replace("\n","").replace("[[","").replace("]]","") + "\n")
-    Final_file_train.close() #Tanquem el fitxer corresponent a les imatges d'entrenament
-        
-        
-    for line in Direct_llista_v:
-        Final_file = np.random.rand(1,180) #Obrim el vector aleatori on s'inclouran el total de APs per cada consulta
-        final = line.index("\n") #Indicació del final de línea de casa vector de AP's
-        if train_or_val == "valid":    
+    
+        else:    
             fitxer_anot = "annotation_valid.txt"
-            APv = label_ranking_average_precision_score(Direct_llista_v,fitxer_anot)
+            APv = label_ranking_average_precision_score(Direct_llista,fitxer_anot)
             Final_file.append(APv)
             # A continuació escriurem en el fitxer cada línia de les APS per les imatges de validació
             Final_file_valid.write(line[0:final] + "For Query "+line+":\t"+ str(Final_file).replace("\n","").replace("[[","").replace("]]","") + "\n") 
+    Final_file_train.close() #Tanquem el fitxer corresponent a les imatges d'entrenament
     Final_file_valid.close() #Tanquem el fitxer corresponent a les imatges de validació
 
 
