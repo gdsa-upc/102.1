@@ -73,5 +73,4 @@ def Evaluate_Ranking(Direct_llista_t,Direct_llista_v,train_or_val): #Funció dec
     Final_file_valid.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
     Final_file2_valid.close() #Tanquem el ftixer per on hem esccrit els valors del lMAP resultants per cada línia
 
-Evaluate_Ranking("features_train.txt","train")
-Evaluate_Ranking("features_valid.txt","valid")
+Evaluate_Ranking("features_train.p","features_valid.p","train")
