@@ -21,6 +21,7 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
     Final_file_valid = open(ruta_abs+"/files/final_file_valid.txt" ,'w')  #Obrim l'arxiu on escriurem els APs per cada consulta de validació
     Final_file2_valid = open(ruta_abs+"/files/final_file_valid.txt" ,'w') #Obrim l'arxiu on escriurem el MAP per cada consulta de validació
     
+    
     for line in Direct_llista:
         Final_file = np.random.rand(1,180) #Obrim el vector aleatori on s'inclouran el total de APs per cada consulta
         endline = line.index("\n") #Indicació del final de línea de casa vector de AP's
@@ -38,6 +39,7 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
             Final_file_valid.write(line[0:endline] + "For Query "+line+":\t"+ str(Final_file).replace("\n","").replace("[[","").replace("]]","") + "\n") 
     Final_file_train.close() #Tanquem el fitxer corresponent a les imatges d'entrenament
     Final_file_valid.close() #Tanquem el fitxer corresponent a les imatges de validació
+
 
     for line in Final_file_train:
         for element in line:
