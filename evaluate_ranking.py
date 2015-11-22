@@ -10,7 +10,7 @@ from itertools import islice
 from sklearn.metrics import average_precision_score
 
 
-ruta_abs = os.path.dirname(os.abspath(__file__)) #Obtenim la ruta absoluta de la carpetao n es troben els fitxers
+ruta_abs = os.path.dirname(os.abspath(__file__)) #Obtenim la ruta absoluta de la carpeta on es troben els fitxers
 Direct_llista = rank(ruta_abs+'/files',ruta_abs+'/files',ruta+'/files/features_train.p',"valid") #Invoquem a la funció rank.py per obtenir el directori de la llista classificada d'imatge
 
 def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant com a paràmetres 
