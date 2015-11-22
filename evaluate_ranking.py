@@ -8,12 +8,14 @@ import os # Carreguem la llibreria corresponent a la funció de introducció de
 from itertools import islice
 from sklearn.metrics import average_precision_score
 
+
 ruta_abs = os.path.dirname(os.abspath(__file__)) #Obtenim la ruta absoluta de la carpetao n es troben els fitxers
-def Evaluate_Ranking(llista_classif,train_or_valid): #Funció declarada passant ocom a paràmetres 
+Direct_llista = rank(ruta_abs+'/files',ruta_abs+'/files',ruta+'/files/features_train.p',"valid") #Invoquem a la funció rank.py per obtenir el directori de la llista classificada d'imatge
+
+def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant com a paràmetres 
     """Aquesta funció a partir del directori de la llista guardada d'imatges de validació 
     classificades extreure les mesures del promig de precisió (AP) i de la mitja del promig
     de precisió (MAP)"""
-    Direct_llista = rank(llista_classif) #Invoquem a la funció rank.py per obtenir el directori de la llista classificada d'imatges 
     fitxer_anot = open(ruta_abs+"/annotation_"+train_or_valid+".txt" , "r") #Obrim els arxius d'annotació en funció del valor de 'train_or_valid')
     Final_file = open(ruta_abs+"/average_precision_"+train_or_valid+".txt", "w") #Obrim l'arxiu on escriurem el AP per cada consulta  
     Final_file2 = open(ruta_abs+"/Mean_average_precision_"+train_or_valid+".txt", "w") ##Obrim l'arxiu on escriurem el MAP per cada consulta  
@@ -36,9 +38,10 @@ def Evaluate_Ranking(llista_classif,train_or_valid): #Funció declarada passant 
     Final_file_train.close() #Tanquem el fitxer corresponent a les imatges d'entrenament
     Final_file_valid.close() #Tanquem el fitxer corresponent a les imatges de validació
 
-Evaluate_Ranking("train")
-Evaluate_Ranking("valid")
-    
+
+"""Segona part de l'exercici: Creació i ensamblament dels fitxers amb
+el valor del Mean Average Precision per cada consulta """
+
     for line in Final_file_train
         for element in line
             suma_train = (sum(line))
@@ -48,9 +51,9 @@ Evaluate_Ranking("valid")
         MAP_train = suma_train/suma_elems #Fem la peració per obtenir aquest valor
         Final_file2.append(MAP_train) #Introduïm el valor resultant dintre del array creat
         #A Continuació esciurem el valor resultant del MAP dintre del fitxer de sortida
-        Final_file2_train.write(line[0:final] + "For Query "+line+":\t" + "Man_AVerage_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
+        Final_file2_train.write(line[0:final] + "For Query "+line+":\t" + "Mean_AVerage_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
     Final_file_train.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
-    Final_file2_train_close() #Tanquem el ftixer per on hem esccrit els valors de lMAP resultants per cada línia
+    Final_file2_train_close() #Tanquem el ftixer per on hem esccrit els valors del MAP resultants per cada línia
     
     
     for line in Final_file_valid
@@ -64,8 +67,9 @@ Evaluate_Ranking("valid")
         #A Continuació esciurem el valor resultant del MAP dintre del fitxer de sortida
         Final_file2_valid.write(line[0:final] + "For Query "+line+":\t" + "Man_AVerage_Precision = "+str(Final_file2).replace("\n","").replace("[[","").replace("]]","") + "\n")
     Final_file_valid.close() #Tanquem el fitxer per on hem llegit les dades dels APS de cada consulta
-    Final_file2_valid_close() #Tanquem el ftixer per on hem esccrit els valors de lMAP resultants per cada línia
+    Final_file2_valid_close() #Tanquem el ftixer per on hem esccrit els valors del lMAP resultants per cada línia
 
-
+Evaluate_Ranking("features_train.txt","train")
+Evaluate_Ranking("features_valid.txt","valid")
 
 
