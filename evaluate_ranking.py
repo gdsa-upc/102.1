@@ -5,7 +5,7 @@ import os # Carreguem la llibreria corresponent a la funció de introducció de
 # rutes absolutes d'un fitxer
 from sklearn.metrics import average_precision_score
 
-ruta_abs = os.path.dirname(os.path.abspath(__file__)) #Obtenim la ruta absoluta de la carpetao n es troben els fitxers
+ruta_abs = os.path.dirname(os.path.abspath(__file__)) #Obtenim la ruta absoluta de la carpeta on es troben els fitxers
 #Direct_llista = rank(ruta_abs+'/files',ruta_abs+'/files',ruta+'/files/features_train.p',"valid") #Invoquem a la funció rank.py per obtenir el directori de la llista classificada d'imatge
  #Franc: das por hecho que ya hemos llamado a la función desde el main, no tienes porque volver a llamarla desde el tuyo.
  
@@ -16,10 +16,10 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
     Final_file2 = open(ruta_abs+"/Mean_average_precision_"+train_or_valid+".txt", "w") ##Obrim l'arxiu on escriurem el MAP per cada consulta  
     
     #Franc: a estas las creo para que no pete el código, luego se intentará depurar
-    Final_file_train = open(ruta_abs+"/files/final_file_train.txt" ,'w')
-    Final_file2_train = open(ruta_abs+"/files/final_file_train.txt" ,'w')
-    Final_file_valid = open(ruta_abs+"/files/final_file_valid.txt" ,'w')
-    Final_file2_valid = open(ruta_abs+"/files/final_file_valid.txt" ,'w')
+    Final_file_train = open(ruta_abs+"/files/final_file_train.txt" ,'w')  #Obrim l'arxiu on escriurem els APs per cada consulta d'entrenament
+    Final_file2_train = open(ruta_abs+"/files/final_file_train.txt" ,'w') #Obrim l'arxiu on escriurem el MAP per cada consulta d'entrenament
+    Final_file_valid = open(ruta_abs+"/files/final_file_valid.txt" ,'w')  #Obrim l'arxiu on escriurem els APs per cada consulta de validació
+    Final_file2_valid = open(ruta_abs+"/files/final_file_valid.txt" ,'w') #Obrim l'arxiu on escriurem el MAP per cada consulta de validació
     
     
     for line in Direct_llista:
@@ -57,7 +57,7 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
         for element in line:
             suma_valid = (sum(line))
             sum_elems = (sum(element))
-        print("Aps d'entrenament sumats!")
+        print("Aps de validacio sumats!")
         Final_file2 = [] #Creem el array necessari per col·locar el valor del MAP
         MAP_valid = suma_valid/sum_elems #Fem la peració per obtenir aquest valor
         Final_file2.append(MAP_valid) #Introduïm el valor resultant dintre del array creat
