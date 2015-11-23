@@ -8,14 +8,15 @@ from sklearn.metrics import average_precision_score
 
 
 ruta_abs = os.path.dirname(os.path.abspath(__file__)) #Obtenim la ruta absoluta de la carpetao n es troben els fitxers
-#Direct_llista = rank(ruta_abs+'/files',ruta_abs+'/files',ruta+'/files/features_train.p',"valid") #Invoquem a la funció rank.py per obtenir el directori de la llista classificada d'imatge
- #das por hecho que ya hemos llamado a la fución desde el main, no tienes xk volver a llamara desde el tuyo.
+Direct_llista = open(ruta_abs+'\files\ranking_val','r') #Obrim la carpeta del directori de la llista classificada d'imatges
  
-def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant com a paràmetres 
+ 
+def Evaluate_Ranking(Direct_llista,train_or_val): #Funció declarada passant com a paràmetres 
 
-    fitxer_anot = open(ruta_abs+"/annotation_"+train_or_valid+".txt" , "r") #Obrim els arxius d'annotació en funció del valor de 'train_or_valid')
-    Final_file = open(ruta_abs+"/average_precision_"+train_or_valid+".txt", "w") #Obrim l'arxiu on escriurem el AP per cada consulta  
-    Final_file2 = open(ruta_abs+"/Mean_average_precision_"+train_or_valid+".txt", "w") ##Obrim l'arxiu on escriurem el MAP per cada consulta  
+    fitxer_anot = open(ruta_abs+"\TerrassaBuildings900\train\Annotation_"+train_or_val+".txt" , "r") #Obrim els arxius quan el valor de train_or_val sigui = a 'train'.     
+    fitxer_anot2 = open(ruta_abs+"\TerrassaBuildings900\val\Annotation_"+train_or_val+".txt" , "r") #Obrim l'arxiu quan el valor de train_or_val sigui = a 'val'.
+    Final_file = open(ruta_abs+"\files\Average_precision_"+train_or_val+".txt", "w") #Obrim l'arxiu on escriurem el AP per cada consulta  
+    Final_file2 = open(ruta_abs+"\files\Mean_average_precision_"+train_or_val+".txt", "w") ##Obrim l'arxiu on escriurem el MAP per cada consulta  
     
     #Franc: a estas las creo para que no pete el código, luego se intentará depurar
     Final_file_train = open(ruta_abs+"/files/final_file_train.txt" ,'w')
@@ -26,16 +27,16 @@ def Evaluate_Ranking(Direct_llista,train_or_valid): #Funció declarada passant c
     
     for line in Direct_llista:
         Final_file = np.random.rand(1,180) #Obrim el vector aleatori on s'inclouran el total de APs per cada consulta
-        endline = line.index("\n") #Indicació del final de línea de casa vector de AP's
-        if train_or_valid == "train":
-            fitxer_anot = "annotation_valid.txt"
+        final = line.index("\n") #Indicació del final de línea de casa vector de AP's
+        if train_or_val == "train":
+            fitxer_anot = "Annotation_train.txt"
             APt = average_precision_score(Direct_llista,fitxer_anot)
             Final_file.append(APt)
             # A continuació escriurem en el fitxer cada línia de les APS per les imatges d'entrenamen
             Final_file_train.write(line[0:final] + "For Query "+line+":\t" + str(Final_file).replace("\n","").replace("[[","").replace("]]","") + "\n")
         else:
-            fitxer_anot = "annotation_valid.txt"
-            APv = average_precision_score(Direct_llista,fitxer_anot)
+            fitxer_anot2 = "Annotation_valid.txt"
+            APv = average_precision_score(Direct_llista,fitxer_anot2)
             Final_file.append(APv)
             # A continuació escriurem en el fitxer cada línia de les APS per les imatges de validació
             Final_file_valid.write(line[0:final] + "For Query "+line+":\t"+ str(Final_file).replace("\n","").replace("[[","").replace("]]","") + "\n") 
