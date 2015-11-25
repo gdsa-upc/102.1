@@ -2,4 +2,4 @@
 TerrassaBuildings900/train/images
 TerrassaBuildings900/val/images
 #anul·lem la carpeta on son tots els arxius que creem a través del codi
-files/*.txt
+**/files
