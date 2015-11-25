@@ -1,12 +1,31 @@
 # -*- coding: utf-8 -*-
 import os
 from itertools import islice
+import numpy as np
 #Afegim les llibreries de scikit, sklearn.metrics per poder fer tots els càlculs
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
+import matplotlib.pyplot as plt
+
+def plot_confusion_matrix(cm, true_labels,normalize = False,title='Confusion Matrix', cmap=plt.cm.Blues):
+    # Normalize matrix rows to sum 1
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        title = 'Normalized ' + title
+    plt.imshow(cm, interpolation='nearest',cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(true_labels))
+    plt.xticks(tick_marks, true_labels, rotation=90)
+    plt.yticks(tick_marks, true_labels)
+    plt.tight_layout()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    
+    plt.show()
 
 
 def evaluate_classification(automatic_classification, ground_truth, val_or_test):
@@ -19,15 +38,21 @@ def evaluate_classification(automatic_classification, ground_truth, val_or_test)
     for line in it_automatic:
         inicio = line.index("\t")
         final = len(line)
-        automatic.append(line[inicio:final]) #Afegim les categories a cada entrada de l'array
+        automatic.append(line[inicio+1:final]) #Afegim les categories a cada entrada de l'array
     for line in it_groundtruth:
         inicio = line.index("\t")
         final = len(line)
-        ground_truth.append(line[inicio:final]) #Afegim les categories a cada entrada de l'array
+        ground_truth.append(line[inicio+1:final]) #Afegim les categories a cada entrada de l'array
 
     # CALCULEM LA MATRIU DE CONFUSIO:
     print("MATRIU DE CONFUSIO:")
-    print(confusion_matrix(ground_truth,automatic))
+    cm = confusion_matrix(ground_truth,automatic)
+    print cm
+    labe = np.unique(ground_truth) #ens treu el llistat de les categories en el ground_truth (una categoria només una vegada).
+    plt.figure(1)
+    plot_confusion_matrix(cm,labe,normalize=False)
+    plt.figure(2)
+    plot_confusion_matrix(cm,labe,normalize=True)
     print("\n")
     
     # CALCULEM L'ACCURACY
