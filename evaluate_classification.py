@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-from itertools import islice
 import numpy as np
 #Afegim les llibreries de scikit, sklearn.metrics per poder fer tots els càlculs
 from sklearn.metrics import confusion_matrix
@@ -31,15 +30,15 @@ def plot_confusion_matrix(cm, true_labels,normalize = False,title='Confusion Mat
 def evaluate_classification(automatic_classification, ground_truth, val_or_test):
     automatic_annotation = open(automatic_classification+'/classification_'+val_or_test+'.txt','r') #obrim el fitxer generat per la funció classify
     groundtruth_annotation = open(ground_truth, 'r') #obrim el fitxer d'annotacio donat
-    it_automatic = islice(automatic_annotation,1,None) #no tenim en compte la primera linia del fitxer generat pel classify
-    it_groundtruth = islice(groundtruth_annotation,1,None) # no tenim en compte la primera linia del fitxer donat.
     automatic = []
     ground_truth = []
-    for line in it_automatic:
+    next(automatic_annotation) #Saltem la primera linia del fitxer
+    for line in automatic_annotation:
         inicio = line.index("\t")
         final = len(line)
         automatic.append(line[inicio+1:final]) #Afegim les categories a cada entrada de l'array
-    for line in it_groundtruth:
+    next(groundtruth_annotation) #Saltem la primera linia del fitxer
+    for line in groundtruth_annotation:
         inicio = line.index("\t")
         final = len(line)
         ground_truth.append(line[inicio+1:final]) #Afegim les categories a cada entrada de l'array
