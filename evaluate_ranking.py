@@ -34,14 +34,14 @@ def evaluate_rank(dir_rank):
             final = line.index("\n")
             k += 1
             if truth[line[0:final]] == categoria: #si la id de la imatge coincideix amb la categoria sumem + 1 a relevants
-                relevants += 1
-                precision = precision + float(relevants)/float(k)
+                relevants += 1 
+                precision = precision + float(relevants)/float(k) #calculem la precisio per cada k
             else:
                 irrelevants += 1
-        AP[filename] = float(precision)/float(relevants)
-        APC = APC + AP[filename]
+        AP[filename] = float(precision)/float(relevants) #calculem la AP de cada imatge de cerca
+        APC = APC + AP[filename]  #calculem la AP acumulada de cada imatge de cerca
         ranking.close()
-    MAN = APC/len(nfiles)
-    return AP, MAN
+    MAN = APC/len(nfiles) #calcul del MAN
+    return AP, MAN #retornem els valors de AP de cada imatge i de MAN
 
 AP,MAN = evaluate_rank(ruta + "/files/ranking_val")
