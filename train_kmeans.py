@@ -21,4 +21,4 @@ for file in nfiles:
     for feat in ds:
         descriptors.append(feat)
 centroides,_ = train_codebook(1,descriptors)
-plt.plot(descriptors[:,0],descriptors[:,2]), plt.show()
+plt.plot(descriptors[:,0],descriptors[:,1]), plt.show()
