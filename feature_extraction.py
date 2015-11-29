@@ -32,13 +32,13 @@ assig = [] #Declarem el vector d'assignacions
 for file in nfiles_t: 
    dscrp = get_local_features("/TerrassaBuildings900/train/images/"+file)
    descriptors.append(dscrp)
-   centroide,_ = train_codebook(13,descriptors)
-assig = compute_assignments(centroide,_,dscrp)
+   #centroide,_ = train_codebook(12,descriptors)
+assig = compute_assignments(centroides,_,dscrp)
 
 for file in nfiles_v:
    dscrp = get_local_features("/TerrassaBuildings900/val/images/"+file)
    descriptors.append(dscrp)
-assig = compute_assignments(centroide,_,dscrp)
+assig = compute_assignments(centroides,_,dscrp)
 
 #A continuació representarem la grafica amb els descriptors i els centroides mrcats amb color vermell
 plt.scatter(descriptors[:,0],descriptors[:,1]),plt.scatter(centroide[:,0],centroide[:,1],color = 'r'),plt.show()
@@ -61,10 +61,10 @@ for line in IDs_file_T:
     final = file.index("\n")
     dscrp = get_local_features("/TerrassaBuildings900/train/images/"+file)
     descriptors.append(dscrp) #introduim el vector de descriptors
-    centroide,_ = train_codebook(13,descriptors)
-    assig = compute_assignments(centroide,_,dscrp,file,"train") #crida a la funció compute_assignments
+    centroides,_ = train_codebook(13,descriptors)
+    assig = compute_assignments(centroides,_,dscrp,file,"train") #crida a la funció compute_assignments
     assignments.append(assig) #Insertem cada assignacio al vector de assignacions
-    norm = construct_bow_vector(assig,centroide,_,dscrp,file,"train") #crida a la funció construct_bow_vector
+    norm = construct_bow_vector(assig,centroides,_,dscrp,file,"train") #crida a la funció construct_bow_vector
     BoW.insert(norm) # insertem cada element normalitzat al vector BoW.
     feat_vec[line[0:final]] = BoW #Afegim al diccionari el vector de paraules normalitzades.
     pickle.dump(feat_vec, local_features_file_T) #Escribim el diccionari amb 'pickle'.
@@ -75,8 +75,8 @@ for line in IDs_file_V:
     final = file.index("\n")
     dscrp = get_local_features("/TerrassaBuildings900/val/images/"+file)
     descriptors.append(dscrp)
-    centroide,_ = train_codebook(13,descriptors)
-    assig = compute_assignments(centroide,_,dscrp,file,"val") #crida a la funció compute_assignments
+    centroides,_ = train_codebook(13,descriptors)
+    assig = compute_assignments(centroides,_,dscrp,file,"val") #crida a la funció compute_assignments
     assignments.append(assig) #Insertem cada assignacio al vector de assignacions
     norm = construct_bow_vector(assig,centroide,_,dscrp,file,"val")
     BoW.insert(norm) # insertem cada element normalitzat al vector BoW.
