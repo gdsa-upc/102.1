@@ -23,20 +23,20 @@ centroides,_ = train_codebook(12,descriptors) #calculem els centroides de les im
 #plt.scatter(centroides[:,0],centroides[:,1]), plt.show()
 
 # Compute assignments
-
+ruta = os.path.dirname(os.path.abspath(__file__)) 
 nfiles_t = os.listdir(ruta+"/TerrassaBuildings900/train/images")
 nfiles_v = os.listdir(ruta+"/TerrassaBuildings900/val/images")
 descriptors = [] #Declarem el vector de descriptors
 assig = [] #Declarem el vector d'assignacions
 
 for file in nfiles_t: 
-   dscrp = get_local_features("/TerrassaBuildings900/train/images"+file)
+   dscrp = get_local_features("/TerrassaBuildings900/train/images/"+file)
    descriptors.append(dscrp)
    centroide,_ = train_codebook(13,descriptors)
 assig = compute_assignments(centroide,_,dscrp)
 
 for file in nfiles_v:
-   dscrp = get_local_features("/TerrassaBuildings900/val/images"+file)
+   dscrp = get_local_features("/TerrassaBuildings900/val/images/"+file)
    descriptors.append(dscrp)
 assig = compute_assignments(centroide,_,dscrp)
 
@@ -59,7 +59,7 @@ assignments = [] #Declarem el vector d'assignacions
 for line in IDs_file_T:
     BoW = np.zeros(1,100)#Generem el vector de paraules normalitzades.
     final = file.index("\n")
-    dscrp = get_local_features("/TerrassaBuildings900/train/images"+file)
+    dscrp = get_local_features("/TerrassaBuildings900/train/images/"+file)
     descriptors.append(dscrp) #introduim el vector de descriptors
     centroide,_ = train_codebook(13,descriptors)
     assig = compute_assignments(centroide,_,dscrp,file,"train") #crida a la funció compute_assignments
@@ -73,7 +73,7 @@ IDs_file_T.close() #Tanquem el directori on es trobaven les imatges d'entrenamen
 for line in IDs_file_V:
     BoW = np.zeros(1,100)#Generem el vector de paraules normalitzades.
     final = file.index("\n")
-    dscrp = get_local_features("/TerrassaBuildings900/val/images"+file)
+    dscrp = get_local_features("/TerrassaBuildings900/val/images/"+file)
     descriptors.append(dscrp)
     centroide,_ = train_codebook(13,descriptors)
     assig = compute_assignments(centroide,_,dscrp,file,"val") #crida a la funció compute_assignments

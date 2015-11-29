@@ -7,7 +7,9 @@ ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de l
 
 def get_local_features(query):
     ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
-    img = cv2.imread(ruta+query,1) #obrim la imatge que hi es a la carpeta images
+    
+    print(ruta+"/.."+query)
+    img = cv2.imread(ruta+"/.."+query,1) #obrim la imatge que hi es a la carpeta images…
     r = 128.0 / img.shape[1]
     dim = (128, int(img.shape[0] * r)) # Tamaño de 128 orientativo, probar mas adelante con diferentes tamaños
     resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA) #redimensiono la imatge per interpolacio fent-la de tamany 500 mes o menys
