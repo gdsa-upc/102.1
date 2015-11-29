@@ -33,15 +33,15 @@ for file in nfiles_t:
    dscrp = get_local_features("/TerrassaBuildings900/train/images/"+file)
    descriptors.append(dscrp)
    #centroide,_ = train_codebook(12,descriptors)
-assig = compute_assignments(centroides,_,dscrp)
+assig = compute_assignments(centroides,dscrp)
 
 for file in nfiles_v:
    dscrp = get_local_features("/TerrassaBuildings900/val/images/"+file)
    descriptors.append(dscrp)
-assig = compute_assignments(centroides,_,dscrp)
+assig = compute_assignments(centroides,dscrp)
 
 #A continuació representarem la grafica amb els descriptors i els centroides mrcats amb color vermell
-plt.scatter(descriptors[:,0],descriptors[:,1]),plt.scatter(centroide[:,0],centroide[:,1],color = 'r'),plt.show()
+plt.scatter(descriptors[0],descriptors[1]),plt.scatter(centroides[:,0],centroides[:,1],color = 'r'),plt.show()
 #Mes tard, mostrem per pantalla el vector d'assignacions separats amb comes
 print", ".join(assig)
 
