@@ -6,8 +6,7 @@ from scipy.cluster.vq import *
 ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
 
 def get_local_features(query):
-    ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
-    
+
     print(ruta+"/.."+query)
     img = cv2.imread(ruta+"/.."+query,1) #obrim la imatge que hi es a la carpeta images…
     r = 128.0 / img.shape[1]
