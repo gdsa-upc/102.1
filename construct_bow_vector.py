@@ -7,7 +7,7 @@ from train_kmeans import train_codebook
 from get_local_features import get_local_features
 from compute_assignments import get_assignments
 
-def build_bow(assignments,train_codebook,id_image,val_or_train):
+def construct_bow_vector(assignments,train_codebook,id_image,val_or_train):
     #Paràmetres de la funcio: els assignments realitzadors sobre els descriptors, el codebook amb les centroides trobats, 
     # els decriptors, les ids de les imatges i si l'indicador de si la carpeta 
     #on estem es la de validacio o la d'entrenament. 
@@ -25,7 +25,7 @@ for file in nfiles_t:
     centroide,_ = train_codebook(13,descriptors)
     assig = get_assignments(centroide,_,dscrp,file,"train")
     assignments.append(assig)
-norm = normalize(assig,centroide,_,dscrp,file,"train")
+norm = construct_bow_vector(assig,centroide,_,dscrp,file,"train")
 BoW.append(norm)
 
 for file in nfiles_v:
@@ -34,5 +34,5 @@ for file in nfiles_v:
     centroide,_ = train_codebook(13,descriptors)
     assig = get_assignments(centroide,_,dscrp,file,"val")
     assignments.append(assig)
-norm = normalize(assig,centroide,_,dscrp,file,"val")
+norm = construct_bow_vector(assig,centroide,_,dscrp,file,"val")
 BoW.append(norm)
