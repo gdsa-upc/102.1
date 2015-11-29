@@ -2,21 +2,17 @@
 import numpy as np
 import pickle
 import os
-from sklearn.preprocessing import normalize
+from sklearn import preprocessing
 from train_kmeans import train_codebook
 from get_local_features import get_local_features
 from compute_assignments import compute_assignments
 
-def construct_bow_vector(assignments,train_codebook,id_image,val_or_train):
-    #Paràmetres de la funcio: els assignments realitzadors sobre els descriptors, el codebook amb les centroides trobats, 
-    # els decriptors, les ids de les imatges i si l'indicador de si la carpeta 
-    #on estem es la de validacio o la d'entrenament
-    normalized = [] #declaració del vector amb els valors de les assignacions normalitzades entre 0 i 1. 
-    for element in assignments:
-        div = normalize(assignments,train_codebook,id_image,val_or_train)
-        n = assignments[element]/div
-        normalized.append(n)
-    return normalized
+def construct_bow_vector(assignments):
+    #Paràmetres de la funcio: els assignments realitzadors sobre els descriptors. 
+    BoW_hist = np.bincount(assignments) #Contem el número de vegades que apareix cada número de cluster i els acumulem en 
+                                        #ordre ascendent en cada casella del vector BoW_hist
+    BoW_norm= preprocessing.normalize(BoW_hist)  #Normalitzem els valors entre 0 i  gràcies a la funció 'normalize'.  
+    return BoW_norm
     
 ruta = os.path.dirname(os.path.abspath(__file__)) # Definim la instrucció principal que busca la ruta absoluta del fitxer
 IDs_file_T = open(ruta+"/files/outfile_train.txt", 'r') #obrim l'arxiu que conté les ids de les imatges d'entrenament
