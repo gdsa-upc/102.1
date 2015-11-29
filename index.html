@@ -45,6 +45,28 @@ Primer de tot, hem creat una base de dades amb diferents categories. De moment, 
 </ul>
 
 <p>Estem desenvolupant el nostre programa amb el llenguatge Python i la llibreria OpenCV.</p>
+
+<p>Desenvolupament del nostre programa:
+El nostre projecte és una proposta dels nostres professors de l’assignatura de Gestió i Distribució de Senyals Audiovisuals i ens han marcat varies entregues per poder dur a terme el nostre projecte.
+La primera setmana vam haver de crear la nostra base de dades i fer els primers passos en el llenguatge de Python i en algoritmes de visió per computador, fent un petit script el qual treia els punts d’interès a partir d’una imatge. Nosaltres ens vam decidir per utilitzar l’algoritme SURF implementat en la llibreria OpenCV. 
+A l’hora de crear la nostre base de dades, els nostres professors van repartir la feina d’aconseguir 50 fotografies de cada una de les categories, indicades abans, en diferents grups. Al nostre grup l’hi va tocar recopilar fotografies de les classes: Escola d’enginyeria de Terrassa i Catedral de Terrassa. A part, cada grup havia d’aconseguir 50 fotos per a la categoria desconegut. Aquestes imatges, que es poden veure més a baix, són un exemple de les imatges que es troben a la nostra base de dades:</p>
+
+<p><img src="https://drive.google.com/file/d/0B2HSCPyWRvEcYW03STVIRjZDNFE/view" alt="Escola d'Enginyeria de Terrassa">
+<img src="https://drive.google.com/file/d/0B2HSCPyWRvEcUnRwOHpSS3htUlU/view" alt="Catedral de Terrassa"></p>
+
+<p>La segona setmana vam crear un primer borrador del que serà el nostre programa final, el qual tindrà dos resultats, com ja hem dit abans: Classificador d’imatges segons la categoria i el Search Visual Engine (Crear rànquings de quines imatges s’assemblen més a partir de treure les principals característiques dels principals punts d’interès de cada imatge). Però el nostre primer borrador, per tenir una idea clara del que volíem sense complicar-ho massa, el vam fer amb tots els valors i resultats aleatoris. Per tant, tots els nostres resultats van ser molt dolents, però ja és el que buscàvem.</p>
+
+<p>La tercera setmana hem estat treballant amb una de les dos parts principals del nostre programa: El Serach Visual Engine. La part principal d’aquesta entrega ha estat entrenar el nostre programa a partir de l’algoritme k-means, el qual és un algoritme de clustering que divideix les nostres imatges que tenim reservades per entrenar el nostre programa en diverses regions. Quan ja tenim aquestes regions, agafem les imatges que tenim reservades per a la validació del nostre programa i classifiquem els seus descriptors de característiques dins de cada regió i, finalment treiem un vector de característiques per a cada imatge. A partir d’aquest vector creem els rànkings de les imatges del conjunt de validació depenent de a quina imatge del conjunt d’entrenament s’assemblin més. Els resultats d’aquesta setmana ja tenen sentit i el nostre programa comença a assemblar-se al programa que volem fer.</p>
+
+<p>Per a la setmana vinent, treballarem l’altre part de l’esquelet del nostre programa: el Classificador.</p>
+
+<p>Enllaços a les presentacions de les nostres entregues de cada setmana:</p>
+
+<ul>
+<li><a href="https://docs.google.com/presentation/d/1j4XhgKo5sl_OgJhbl1cTukef9B3PBcNmTa4dFhrjFWE/edit#slide=id.p">1a entrega</a></li>
+<li><a href="https://docs.google.com/presentation/d/1vaIgvMihRCzGw4zdUQQOoQhxdtMMelmlG6Q2tIG4MpU/edit#slide=id.gd92b9f130_2_0">2a entrega</a></li>
+<li><a href="https://docs.google.com/presentation/d/1aKA3NKxA33cYNE2jSLvl8xUe5T-JnWQb4S2QtLYlh_0/edit?usp=drive_web">3a entrega</a></li>
+</ul>
         </section>
 
         <footer>
