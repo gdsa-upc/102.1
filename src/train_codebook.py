@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from get_local_features import get_local_features
+from src import *
 import matplotlib.pyplot as plt
 import os
 from scipy.cluster.vq import kmeans,vq
