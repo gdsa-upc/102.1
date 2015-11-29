@@ -7,6 +7,7 @@ import src.construct_bow_vector as construct_bow_vector
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle
+from scipy.cluster.vq import *
 
 ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta del l'arxiu
 
