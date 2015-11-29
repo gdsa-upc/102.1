@@ -42,8 +42,6 @@ assig = compute_assignments(centroides,dscrp)
 
 #A continuació representarem la grafica amb els descriptors i els centroides mrcats amb color vermell
 plt.scatter(descriptors[0],descriptors[1]),plt.scatter(centroides[:,0],centroides[:,1],color = 'r'),plt.show()
-#Mes tard, mostrem per pantalla el vector d'assignacions separats amb comes
-print", ".join(assig)
 
 #constrium BoW
 
@@ -57,7 +55,8 @@ descriptors = [] #Declarem el vector de descriptors
 assignments = [] #Declarem el vector d'assignacions
 
 for line in IDs_file_T:
-    BoW = np.zeros(1,100)#Generem el vector de paraules normalitzades.
+    #BoW = np.zeros(1,100) #Generem el vector de paraules normalitzades.
+    BoW = []
     final = file.index("\n")
     dscrp = get_local_features("/TerrassaBuildings900/train/images/"+file)
     descriptors.append(dscrp) #introduim el vector de descriptors
@@ -71,7 +70,8 @@ for line in IDs_file_T:
 IDs_file_T.close() #Tanquem el directori on es trobaven les imatges d'entrenament.
 
 for line in IDs_file_V:
-    BoW = np.zeros(1,100)#Generem el vector de paraules normalitzades.
+    #BoW = np.zeros(1,100)#Generem el vector de paraules normalitzades.
+    BoW = []
     final = file.index("\n")
     dscrp = get_local_features("/TerrassaBuildings900/val/images/"+file)
     descriptors.append(dscrp)
