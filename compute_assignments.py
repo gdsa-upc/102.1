@@ -27,7 +27,6 @@ assig = compute_assignments(centroide,_,dscrp)
 for file in nfiles_v:
    dscrp = get_local_features("/TerrassaBuildings900/val/images"+file)
    descriptors.append(dscrp)
-   centroide,_ = train_codebook(13,descriptors)
 assig = compute_assignments(centroide,_,dscrp)
 
 #A continuació representarem la grafica amb els descriptors i els centroides mrcats amb color vermell
