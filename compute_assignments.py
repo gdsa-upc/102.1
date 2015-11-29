@@ -11,8 +11,7 @@ ruta = os.path.dirname(os.path.abspath(__file__)) # Definim la instrucció princ
 def compute_assignments(codebook,desc):
     #Paràmetres de la funcio: el codebook amb les centroides trobats i els decriptors
     norm_desc = whiten(desc) # Normaliza descriptores
-    assignments,_ = vq(norm_desc, codebook) # la funció vq elabora el vector d'assignacions
-    return assignments #Retorna el vector d'assignacions
+    return vq(norm_desc, codebook) # la funció vq elabora el vector d'assignacions i retorna el vector d'assignacions
     
 nfiles_t = os.listdir(ruta+"/TerrassaBuildings900/train/images")
 nfiles_v = os.listdir(ruta+"/TerrassaBuildings900/val/images")
