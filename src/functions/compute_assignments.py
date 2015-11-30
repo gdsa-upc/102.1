@@ -13,9 +13,13 @@ def compute_assignments(codebook,desc):
     return vq(whiten(desc), codebook)
 
 if __name__ == "__main__":
+    dsc = []
     desc = get_local_features("../imagen_primerscript/people.jpg")
+    for feat in desc:
+        dsc.append(desc)
     desc2 = get_local_features("../imagen_primerscript/tiger.jpg")
-    codebook,_ = train_codebook(5,desc)
-    assig = compute_assignments(codebook,desc2)    
-    print "Longuitud del assignments= " + str(len(assig))
-    plt.scatter(desc2[:,0], desc2[:,1]), plt.scatter(desc[:,0],desc[:,1]), plt.scatter(codebook[:,0], codebook[:,1], color='r'), plt.show() 
+    for feat in desc2:
+        dsc.append(desc2)
+    print len(dsc)
+    codebook,_ = train_codebook(5,dsc)
+    #assig = compute_assignments(codebook,dsc)    
