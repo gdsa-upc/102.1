@@ -22,5 +22,3 @@ def get_local_features(query):
         print kp[k] 
         print des[k]"""
     return whiten(des[0:5], check_finite = True)#Si no se deben retornar normalizados cambiamos a return des, devolvemos los 5 primeros descriptores para ahorrar memoria y tiempo
-
-#des=get_local_features('/imagen_primerscript/tiger.jpg') #tendremos que cambiar la foto
