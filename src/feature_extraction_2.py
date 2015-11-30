@@ -23,7 +23,7 @@ plt.scatter(descriptores_train[0],descriptores_train[1]),plt.scatter(centroides[
 
 #Compute Assigments
 assig_train = [] #Declarem el vector d'assignacions de train
-assig_train = COMP.compute_assignments(centroides,descriptor_val)
+assig_train = COMP.compute_assignments(centroides,descriptores_train)
 nfiles_v = os.listdir(ruta +"/.."+ '/TerrassaBuildings900/val/images') #"""/TerrassaBuildings900/val/images"""
 descriptor_val = []
 for file in nfiles_v:

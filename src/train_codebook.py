@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from src import *
 import matplotlib.pyplot as plt
 import os
 from scipy.cluster.vq import kmeans,vq
