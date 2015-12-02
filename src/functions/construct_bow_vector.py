@@ -8,8 +8,8 @@ from compute_assignments import compute_assignments
 
 def construct_bow_vector(assignments):
     #Paràmetres de la funcio: els assignments realitzadors sobre els descriptors. 
-    BoW_hist = np.bincount(assignments) 
-    BoW_norm= preprocessing.normalize(BoW_hist)  #Normalitzem els valors entre 0 i  gràcies a la funció 'normalize'.  
+    BoW_hist = np.float64(np.reshape(np.bincount(assignments), (1,-1))) #corretgim el warning de reshape
+    BoW_norm= preprocessing.normalize(BoW_hist)  #Normalitzem els valors entre 0 i  gràcies a la funció 'normalize'.
     return BoW_norm
 
 if __name__ == "__main__":

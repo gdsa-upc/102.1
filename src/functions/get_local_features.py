@@ -15,8 +15,7 @@ def get_local_features(query):
     # extract RootSIFT descriptors
     rs = RootSIFT()
     (kps, descs) = rs.compute(image, kps)
-    return descs[0:5] #return the first 5 elements
-    
+    return descs #return the descriptors
 if __name__ == "__main__":
     a = get_local_features("../imagen_primerscript/people.jpg")
-    print a
+    print len(a)
