@@ -9,7 +9,7 @@ ruta = os.path.dirname(os.path.abspath(__file__)) # Definim la instrucció princ
 
 def compute_assignments(codebook,desc):
     assignments,_ = vq(desc, codebook) #tornem les distancies normalitzades
-    return assignments
+    return assignments,len(codebook)
 
 if __name__ == "__main__":
     dsc = []
@@ -20,4 +20,4 @@ if __name__ == "__main__":
     for feat in desc2:
         dsc.append(feat)
     codebook,_ = train_codebook(5,dsc)
-    clase = compute_assignments(codebook,dsc)
+    clase,k = compute_assignments(codebook,dsc)
