@@ -1,3 +1,4 @@
+"""
 # -*- coding: utf-8 -*-
 import os
 import pickle #carreguem la llibreria pickle per poder treballar amb els diccionaris
@@ -44,3 +45,39 @@ def rank(features_path,save_path,features_train,val_or_test,annotation):
 if __name__ == "__main__":
     ruta = os.path.dirname(os.path.abspath(__file__)) #ruta absoluta del projecte
     rank(ruta+'/files',ruta+'/files',ruta+'/files/bow_train.p',"val",ruta+'/TerrassaBuildings900') #crida a la funció rank pel diccionari de validació
+"""
+# -*- coding: utf-8 -*-
+import os
+import pickle
+import numpy as np
+from sklearn.metrics import pairwise_distances
+
+def rank(train_bow_path, val_bow_path, results_dir, annotation_path):
+    train_bow = pickle.load( open(train_bow_path, "r") )
+    val_bow = pickle.load( open(val_bow_path, "r") )
+    
+
+    # Creamos el directorio si no existe
+    if not os.path.exists(results_dir):
+        os.makedirs(results_dir)
+    i=0
+    annotations= open(annotation_path, "r")
+    for val_id, val_key in val_bow.items():
+        annotations.seek(0)
+        rank= {}
+        for line in annotations:
+            rec= line.split("\t")
+            print rec[0] + " = " + val_id + "\n"
+            print rec[1]
+            if rec[0]== val_id and rec[1]!= "desconegut\n":
+                print "BIEEEEEN\n\n\n"
+                for train_id, train_key in train_bow.items():
+                    rank[train_id]= pairwise_distances(val_key, train_key, metric='euclidean', n_jobs=1)
+                rank_file= open(results_dir + "/" + val_id + ".txt", 'w')
+                for k, v in sorted(rank.items(), key=lambda (k,v ): (v,k) ):
+                    rank_file.write(k)
+                    rank_file.write("\n")
+                rank_file.close()
+
+# Ejecutamos
+rank("../files/bow_train.p", "../files/bow_val.p", "../ranking_val/", "../TerrassaBuildings900/val/annotation.txt")

@@ -3,14 +3,15 @@ import os
 from scipy.cluster.vq import vq
 from get_local_features import get_local_features
 from train_codebook import train_codebook
-
+from sklearn.cluster import MiniBatchKMeans
 
 ruta = os.path.dirname(os.path.abspath(__file__)) # Definim la instrucció principal que busca la ruta absoluta del fitxer
 
 def compute_assignments(codebook,desc):
-    assignments,_ = vq(desc, codebook) #tornem les distancies normalitzades
-    return assignments,len(codebook)
-
+    #assignments,_ = vq(desc, codebook) #tornem les distancies normalitzades
+    assignments = codebook.predict(desc)
+    return assignments
+    
 if __name__ == "__main__":
     dsc = []
     desc = get_local_features("../imagen_primerscript/people.jpg")

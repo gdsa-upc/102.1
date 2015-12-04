@@ -2,9 +2,14 @@
 from scipy.cluster.vq import kmeans
 from get_local_features import get_local_features
 import matplotlib.pyplot as plt
+from sklearn.cluster import MiniBatchKMeans
 
 def train_codebook(nclusters,normalized_descriptors):
-    return kmeans(normalized_descriptors,nclusters) #obtenim els centroides de les imatges
+    km = MiniBatchKMeans(nclusters)
+    km.fit(normalized_descriptors)
+    return km
+    
+    #return kmeans(normalized_descriptors,nclusters) #obtenim els centroides de les imatges
 
 if __name__ == "__main__":
     desc = get_local_features("../imagen_primerscript/people.jpg") #obtenim els descriptors de la imatge
