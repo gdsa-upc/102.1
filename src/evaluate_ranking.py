@@ -2,11 +2,10 @@
 import numpy as np
 import os
 
-ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
 def evaluate_rank(dir_rank):
     nfiles = os.listdir(dir_rank)
-    ground_truth_val = open(ruta+"/TerrassaBuildings900/val/annotation.txt", "r")
-    ground_truth_train = open(ruta+"/TerrassaBuildings900/train/annotation.txt","r")
+    ground_truth_val = open("../TerrassaBuildings900/val/annotation.txt", "r")
+    ground_truth_train = open("../TerrassaBuildings900/train/annotation.txt","r")
     truth = {} #inicialitzem una taula on l'index es la id de la imatge i conté la seva categoria
     AP = {}
     next(ground_truth_val)#eliminem la primera linia de l'arxiu ja que no ens interessa
@@ -44,4 +43,4 @@ def evaluate_rank(dir_rank):
     MAN = APC/len(nfiles) #calcul del MAN
     return AP, MAN #retornem els valors de AP de cada imatge i de MAN
 
-AP,MAN = evaluate_rank(ruta + "/files/ranking_val")
+AP,MAN = evaluate_rank("../files/ranking_val")

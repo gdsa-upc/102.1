@@ -42,5 +42,4 @@ def rank(features_path,save_path,features_train,val_or_test,annotation):
     annot.close()
 
 if __name__ == "__main__":
-    ruta = os.path.dirname(os.path.abspath(__file__)) #ruta absoluta del projecte
-    rank(ruta+'/files',ruta+'/files',ruta+'/files/bow_train.p',"val",ruta+'/TerrassaBuildings900') #crida a la funció rank pel diccionari de validació
+    rank('../files','../files','../files/bow_train.p',"val",'../TerrassaBuildings900') #crida a la funció rank pel diccionari de validació

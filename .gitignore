@@ -6,3 +6,6 @@ files/
 
 #anul·lem el seguiment dels canvis a la carpeta imagen_primerscript
 imagen_primerscript/
+
+#anul·lem eks canvis a tots els arxius amb extensions .pyc
+*.pyc
