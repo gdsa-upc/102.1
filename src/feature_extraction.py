@@ -32,7 +32,8 @@ if __name__ == "__main__":
     centroides = train(dsc_all_train,nclusters)
     save_bow(centroides,dsc_ind_train,"train",nclusters)
     _, dsc_ind_val = get_descriptors("../TerrassaBuildings900/val/images")
-    save_bow(centroides,dsc_ind_val,"val",nclusters)"""
+    save_bow(centroides,dsc_ind_val,"val",nclusters)
+    """
     f = open("../files/bow_val.p",'r')
     p = pickle.load(f)
     t = open("../files/bow_train.p",'r')

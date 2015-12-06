@@ -10,6 +10,7 @@ import pickle
 def construct_bow_vector(assignments,nclusters):
     #Paràmetres de la funcio: els assignments realitzadors sobre els descriptors.
     BoW_hist = np.zeros(nclusters) # Creerm una llista buida de k(número de clusters) valors igualats a cero.
+    print len(BoW_hist)
     for a in assignments:
         BoW_hist[a] += 1 # Per cada entrada a l'assigments sumem 1 al índex que l'hi pertoca en el histograma.
     BoW_hist = np.float64(np.reshape(BoW_hist, (1,-1))) #corretgim el warning de reshape
@@ -25,10 +26,10 @@ if __name__ == "__main__":
         dsc_ind[filename] = get_local_features("../imagen_primerscript/" + file)
         for feat in dsc_ind[filename]:
             dsc.append(feat)
-    codebook,_ = train_codebook(5,dsc)
+    codebook,k = train_codebook(5,dsc)
     for file in nfiles:
         filename = file[0:file.index(".")]
-        clase,k = compute_assignments(codebook, dsc_ind[filename])
+        clase = compute_assignments(codebook, dsc_ind[filename])
         BoW[filename] = construct_bow_vector(clase,k)
     features = open("../files/features.p",'w')
     pickle.dump(BoW,features)
