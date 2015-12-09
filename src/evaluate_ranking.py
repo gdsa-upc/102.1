@@ -19,13 +19,13 @@ def evaluate_rank(dir_rank):
         final = line.index("\n")
         truth[line[0:id_foto]] = line[id_foto+1:final] #guardem la categoria de cada imatge a un vector
     MAN = 0
+    APC = 0
     for file in nfiles:
         ranking = open(dir_rank+"/"+file,"r")#obrim l'arxiu rank d'una imatge de cerca
         filename = file[0:file.index(".")]
         categoria = truth[filename] #assignem la categoria que té la imatge de cerca
         relevants = 0
         precision = 0
-        APC = 0
         AP[filename] = 0
         irrelevants = 0
         k = 0
@@ -34,12 +34,13 @@ def evaluate_rank(dir_rank):
             k += 1
             if truth[line[0:final]] == categoria: #si la id de la imatge coincideix amb la categoria sumem + 1 a relevants
                 relevants += 1 
-                precision = precision + float(relevants)/float(k) #calculem la precisio per cada k
+                precision = precision + (float(relevants)/float(k)) #calculem la precisio per cada k
             else:
                 irrelevants += 1
         AP[filename] = float(precision)/float(relevants) #calculem la AP de cada imatge de cerca
-        APC = APC + AP[filename]  #calculem la AP acumulada de cada imatge de cerca
+        APC += AP[filename]  #calculem la AP acumulada de cada imatge de cerca
         ranking.close()
+    print APC
     MAN = APC/len(nfiles) #calcul del MAN
     return AP, MAN #retornem els valors de AP de cada imatge i de MAN
 

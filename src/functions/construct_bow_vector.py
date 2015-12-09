@@ -10,7 +10,6 @@ import pickle
 def construct_bow_vector(assignments,nclusters):
     #Paràmetres de la funcio: els assignments realitzadors sobre els descriptors.
     BoW_hist = np.zeros(nclusters) # Creerm una llista buida de k(número de clusters) valors igualats a cero.
-    print len(BoW_hist)
     for a in assignments:
         BoW_hist[a] += 1 # Per cada entrada a l'assigments sumem 1 al índex que l'hi pertoca en el histograma.
     BoW_hist = np.float64(np.reshape(BoW_hist, (1,-1))) #corretgim el warning de reshape
