@@ -7,6 +7,7 @@ from sklearn.metrics import pairwise_distances
 def rank(features_path,save_path,features_train,val_or_test,annotation):
     out = []
     ordenada = []
+    bow_train = 0
     featuresfile = open(features_path+'/bow_'+val_or_test+'.p','r') #obrim el diccionari de vectors de característiques de validació o de test
     train_featuresfile = open(features_train,'r') #obrim el diccionari de vectors de característiques d'entrenament
     annot = open(annotation+'/'+val_or_test+'/annotation.txt','r') #obrim el fixer anotacions del conjunt de validacio o de test
@@ -29,10 +30,12 @@ def rank(features_path,save_path,features_train,val_or_test,annotation):
                 bow_train = train[k2] #treiem el vector de caracteristiques de cada id d'entrenament
                 dist = pairwise_distances(bow,bow_train,metric='euclidean',n_jobs=1) #calculem les distancies euclidees entre el Bow de validació/test i els BOW d'entrenament
                 out.append(dist) #Guardem les distancies en out (cada distància esta guardada en aquest vector que la seva corresponent id en el vector d'entrenament)
+                bow_train = 0
             ordenada = sorted(out) #Ordenem la llista out de menys a més distància a la imatge que estem estudiant. Ho guardem a l'array ordenada.
             for item in ordenada:
                 position = out.index(item) #busquem la posicio en el vector out de les distancies ordenades
                 outfile.write(entrenament[position]+"\n") #el fitxer de sortida marcarà les ids que més s'aproximin (en distàncies) en ordre.
+                out[position] = 'f'
             out = []
             ordenada = []
             outfile.close()
