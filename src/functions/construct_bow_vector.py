@@ -16,22 +16,22 @@ def construct_bow_vector(assignments,nclusters):
     BoW_norm= preprocessing.normalize(BoW_hist)  #Normalitzem els valors entre 0 i 1 gràcies a la funció 'normalize'.
     return BoW_norm
 if __name__ == "__main__":
-    nfiles = os.listdir("../imagen_primerscript")
-    dsc = []
-    BoW = dict()
-    dsc_ind = {}
+    nfiles = os.listdir("../imagen_primerscript") #llistem els arxius del directori
+    dsc = [] #inicialitzem el vector on aniran tots els descriptors de totes les imatges del directori
+    BoW = dict() #inicialitzem el diccionari
+    dsc_ind = {} #inicialitzem el vector que contindrá tots els descriptors de cada imatge
     for file in nfiles:
-        filename = file[0:file.index(".")]
-        dsc_ind[filename] = get_local_features("../imagen_primerscript/" + file)
+        filename = file[0:file.index(".")] #obtenim el nom de l'arxiu
+        dsc_ind[filename] = get_local_features("../imagen_primerscript/" + file) #dessem els descriptors de la imatge corresponent
         for feat in dsc_ind[filename]:
-            dsc.append(feat)
-    codebook,k = train_codebook(5,dsc)
+            dsc.append(feat) #dessem tots els descriptors de totes les imatges al vector
+    codebook,k = train_codebook(5,dsc) #entrenem el codebook
     for file in nfiles:
         filename = file[0:file.index(".")]
-        clase = compute_assignments(codebook, dsc_ind[filename])
-        BoW[filename] = construct_bow_vector(clase,k)
-    features = open("../files/features.p",'w')
-    pickle.dump(BoW,features)
+        clase = compute_assignments(codebook, dsc_ind[filename]) #calculem els assignaments
+        BoW[filename] = construct_bow_vector(clase,k) #dessem els assignaments al vector BoW
+    features = open("../files/features.p",'w') 
+    pickle.dump(BoW,features) #Escribim els assignaments al bow
     features.close()
     feat = open("../files/features.p",'r')
     p = pickle.load(feat)
