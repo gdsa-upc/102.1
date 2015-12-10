@@ -8,8 +8,7 @@ from sklearn.cluster import MiniBatchKMeans
 ruta = os.path.dirname(os.path.abspath(__file__)) # Definim la instrucció principal que busca la ruta absoluta del fitxer
 
 def compute_assignments(codebook,desc):
-    #assignments,_ = vq(desc, codebook) #tornem les distancies normalitzades
-    assignments = codebook.predict(desc)
+    assignments = codebook.predict(desc) #calculem els assignaments
     return assignments
     
 if __name__ == "__main__":
@@ -20,5 +19,5 @@ if __name__ == "__main__":
         dsc.append(feat)
     for feat in desc2:
         dsc.append(feat)
-    codebook,_ = train_codebook(5,dsc)
-    clase,k = compute_assignments(codebook,dsc)
+    codebook,_ = train_codebook(5,dsc) #entrenem el codebook
+    clase,k = compute_assignments(codebook,dsc) #observem els assignaments
