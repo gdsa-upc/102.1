@@ -9,12 +9,13 @@ import pickle
 
 def construct_bow_vector(assignments,nclusters):
     #Paràmetres de la funcio: els assignments realitzadors sobre els descriptors.
-    BoW_hist = np.zeros(nclusters) # Creerm una llista buida de k(número de clusters) valors igualats a cero.
+    BoW_hist = np.zeros((nclusters, )) # Creerm una llista buida de k(número de clusters) valors igualats a cero.
     for a in assignments:
         BoW_hist[a] += 1 # Per cada entrada a l'assigments sumem 1 al índex que l'hi pertoca en el histograma.
     BoW_hist = np.float64(np.reshape(BoW_hist, (1,-1))) #corretgim el warning de reshape
-    BoW_norm= preprocessing.normalize(BoW_hist)  #Normalitzem els valors entre 0 i 1 gràcies a la funció 'normalize'.
-    return BoW_norm
+    BoW_norm= preprocessing.normalize(BoW_hist)  #Normalitzem els valors entre 0 i 1 gràcies a la funció 'normalize'
+    return BoW_norm[0]
+    
 if __name__ == "__main__":
     nfiles = os.listdir("../imagen_primerscript") #llistem els arxius del directori
     dsc = [] #inicialitzem el vector on aniran tots els descriptors de totes les imatges del directori
@@ -34,6 +35,4 @@ if __name__ == "__main__":
     pickle.dump(BoW,features) #Escribim els assignaments al bow
     features.close()
     feat = open("../files/features.p",'r')
-    p = pickle.load(feat)
-    print p.keys()
-    
+    p = pickle.load(feat)    
