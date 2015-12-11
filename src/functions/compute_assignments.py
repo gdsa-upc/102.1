@@ -20,4 +20,4 @@ if __name__ == "__main__":
     for feat in desc2:
         dsc.append(feat)
     codebook,_ = train_codebook(5,dsc) #entrenem el codebook
-    clase,k = compute_assignments(codebook,dsc) #observem els assignaments
+    clase = compute_assignments(codebook,dsc) #observem els assignaments
