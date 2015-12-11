@@ -1,0 +1,28 @@
+#-*-coding:utf-8-*-
+import numpy as np
+import os
+import pickle
+
+ruta = os.path.dirname(os.path.abspath(__file__)) #Obtenim la ruta absoluta de fitxer. 
+                                                  
+                                                  
+def classify(features,classify,trained_model,val_or_train):
+
+    features = open(ruta+"/files/outfile_"+val_or_train+".txt","r") #Obrim el fitxer on haviem guardat les caracteristiques per cada imatge d'entrenament. 
+    
+    trained_model = open(ruta+"/files/trained_model.txt","r") #Obrim el directori on hem generat el model entrenat (el fitxer 'pickle').
+    
+    classify = open(ruta+"/files/BR_Classificator_"+val_or_train+".txt","w") #Escollim el fitxer d'annotació on guardarem l'annotació per cada imatge.
+    
+    classify.write("ImageID" "\t" "Its Class" "\n") #Escrivim el títol del fitxer de classificació d'entrenament.
+    
+    FEAT = pickle.load(features) #Carreguem el fitxer on es troben els ids de les imatges amb les seves característiques.
+    
+    for ident in trained_model.keys():
+        for class_name in FEAT: #Per cada nom de clase del fitxer de característiques d'entrenament.
+            classify.write(ident+"\t"+class_name+"\n")
+    classify.close() # Tanquem el fitxer de classificador.
+
+#Finalment, cridem a la funció per obtenir els resultats.
+classify(ruta+"/files/outfile_train.txt",ruta+"/files/BR_Classificator_train.txt",ruta+"/files/trained_model.p","train");
+classify(ruta+"/files/outfile_val.txt",ruta+"/files/BR_Classificator_val.txt",ruta+"/files/trained_model.p","val");
