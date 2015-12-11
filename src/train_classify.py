@@ -2,6 +2,7 @@
 from functions import *
 import pickle
 from sklearn import svm
+from collections import Counter
 
 def train_clasificador(annotations,path_bow_train):
     file_train = open(path_bow_train,'r')
@@ -11,14 +12,20 @@ def train_clasificador(annotations,path_bow_train):
     next(annotations_file)
     clases = []
     for l in annotations_file:
-        line = l[l.index("\t"):l.index("\n")]
+        line = l[l.index("\t")+1:l.index("\n")]
         clases.append(line)
     dsc = []
     ids = []
     for i in bow_train.keys():
         dsc.append(bow_train[i])
         ids.append(i)        
-    clf = svm.SVC()
+    weight = {}
+    nclases = len(set(clases))
+    for k in clases:
+        if k not in weight:
+            ncl = clases.count(k)
+            weight[k] = float(len(dsc))/(nclases*ncl)
+    clf = svm.SVC(class_weight = weight)
     a = clf.fit(dsc,clases)
     return a.predict(dsc)
 
