@@ -1,25 +1,52 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Building Recognizer by gdsa-upc</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Building Recognizer</h1>
-      <h2 class="project-tagline">projecte del grup 102.1</h2>
-      <a href="https://github.com/gdsa-upc/Building-Recognizer" class="btn">View on GitHub</a>
-      <a href="https://github.com/gdsa-upc/Building-Recognizer/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/gdsa-upc/Building-Recognizer/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
 
-    <section class="main-content">
-      <p>Benvinguts al cercador i classificador visual BUILDING RECOGNIZER (Terrassa Edition).
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Building Recognizer by gdsa-upc</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/gdsa-upc/Building-Recognizer">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Building Recognizer</h1>
+            <h2>projecte del grup 102.1</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/gdsa-upc/Building-Recognizer/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/gdsa-upc/Building-Recognizer/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <p>Benvinguts al cercador i classificador visual BUILDING RECOGNIZER (Terrassa Edition).
 Som un grup de 4 estudiants del Grau en Enginyeria de Sistemes Audiovisuals de l’Escola d’Enginyeria de Terrassa (Universitat Politècnica de Catalunya). 
 Estem desenvolupant un programa de cerca visual basat en la visió per computador que ens permeti identificar diferents edificis i/o monuments emblemàtics d’una de les ciutats més importants del Vallès Occidental, com és Terrassa.
 Primer de tot, hem creat una base de dades amb diferents categories. De moment, aquesta base de dades consta de 12 categories corresponents a 12 edificis diferents de la ciutat de Terrassa i a una 13a categoria anomenada edificis desconeguts.</p>
@@ -39,8 +66,8 @@ El nostre projecte és una proposta dels nostres professors de l’assignatura d
 La primera setmana vam haver de crear la nostra base de dades i fer els primers passos en el llenguatge de Python i en algoritmes de visió per computador, fent un petit script el qual treia els punts d’interès a partir d’una imatge. Nosaltres ens vam decidir per utilitzar l’algoritme SURF implementat en la llibreria OpenCV. 
 A l’hora de crear la nostre base de dades, els nostres professors van repartir la feina d’aconseguir 50 fotografies de cada una de les categories, indicades abans, en diferents grups. Al nostre grup l’hi va tocar recopilar fotografies de les classes: Escola d’enginyeria de Terrassa i Catedral de Terrassa. A part, cada grup havia d’aconseguir 50 fotos per a la categoria desconegut. Aquestes imatges, que es poden veure més a baix, són un exemple de les imatges que es troben a la nostra base de dades:</p>
 
-<p><img src="https://doc-00-ac-docs.googleusercontent.com/docs/securesc/nep5o7s3soi81d42f4mblp6ps0oir60m/3u9iillg419vcp2cnkrse7jo3jb3156r/1450022400000/08498550151114946525/13663080040045822533/0B2HSCPyWRvEcYW03STVIRjZDNFE?e=view&amp;nonce=st2oohc6k0mo6&amp;user=13663080040045822533&amp;hash=cj67t2439do7sf44ld7drfmf0c93kmp7" alt="Escola d'Enginyeria de Terrassa">
-<img src="https://doc-0o-ac-docs.googleusercontent.com/docs/securesc/nep5o7s3soi81d42f4mblp6ps0oir60m/hl1n3811onqg3k13ev5utm9l1s7folco/1450022400000/08498550151114946525/13663080040045822533/0B2HSCPyWRvEcUnRwOHpSS3htUlU?e=view" alt="Catedral de Terrassa"></p>
+<p><img alt="Escola d'Enginyeria de Terrassa">
+<img alt="Catedral de Terrassa"></p>
 
 <p>La segona setmana vam crear un primer borrador del que serà el nostre programa final, el qual tindrà dos resultats, com ja hem dit abans: Classificador d’imatges segons la categoria i el Search Visual Engine (Crear rànquings de quines imatges s’assemblen més a partir de treure les principals característiques dels principals punts d’interès de cada imatge). Però el nostre primer borrador, per tenir una idea clara del que volíem sense complicar-ho massa, el vam fer amb tots els valors i resultats aleatoris. Per tant, tots els nostres resultats van ser molt dolents, però ja és el que buscàvem.</p>
 
@@ -55,15 +82,22 @@ A l’hora de crear la nostre base de dades, els nostres professors van repartir
 <li><a href="https://docs.google.com/presentation/d/1vaIgvMihRCzGw4zdUQQOoQhxdtMMelmlG6Q2tIG4MpU/edit#slide=id.gd92b9f130_2_0">2a entrega</a></li>
 <li><a href="https://docs.google.com/presentation/d/1aKA3NKxA33cYNE2jSLvl8xUe5T-JnWQb4S2QtLYlh_0/edit?usp=drive_web">3a entrega</a></li>
 </ul>
+      </section>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/gdsa-upc/Building-Recognizer">Building Recognizer</a> is maintained by <a href="https://github.com/gdsa-upc">gdsa-upc</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/gdsa-upc">gdsa-upc</a> can be found on <a href="https://github.com/gdsa-upc/Building-Recognizer">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
       </footer>
 
-    </section>
+    </div>
 
-  
+    
   </body>
 </html>
