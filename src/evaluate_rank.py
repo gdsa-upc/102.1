@@ -1,7 +1,44 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import os
+import matplotlib.pyplot as plt
+from PIL import Image,ImageOps
 
+def border(name_image): #Funcio creada per fer un top5 del rànking creat que escollim
+    mostra = open("../files/ranking_val/"+name_image+".txt",'r')
+    print "Imatge mostra:"
+    imagemostra = Image.open("../TerrassaBuildings900/val/images/168-2743-15592.jpg")
+    y = ImageOps.expand(imagemostra,border=50,fill='blue')
+    plt.figure(1),plt.imshow(y),plt.show()
+    print "\n"
+    print "Rànking mostra:"
+    mostra_val = open("../TerrassaBuildings900/val/annotation.txt",'r')
+    for line in mostra_val:
+        id_im = line[0:line.index("\t")]
+        if str(id_im) == name_image:
+            clase_mostra = line[line.index("\t")+1:line.index("\n")]
+
+    top = 0
+    for line in mostra:
+        if top<5:
+            id_image = line[0:line.index("\n")]
+            image_rank = Image.open("../TerrassaBuildings900/train/images/"+id_image+".jpg")
+            mostra_train = open("../TerrassaBuildings900/train/annotation.txt",'r')
+            for lin in mostra_train:
+                id_train = lin[0:lin.index("\t")]
+                if id_train == id_image:
+                    clase = lin[lin.index("\t")+1:lin.index("\n")]
+            if clase == clase_mostra:
+                y2 = ImageOps.expand(image_rank,border=50,fill='green')
+                plt.figure(top+2),plt.imshow(y2),plt.show()
+            else:
+                y3 = ImageOps.expand(image_rank,border=50,fill='red')
+                plt.figure(top+2),plt.imshow(y3),plt.show()
+            clase.strip()
+        mostra_train.close()
+        top += 1
+        
+        
 def evaluate_rank(dir_rank):
     nfiles = os.listdir(dir_rank)
     ground_truth_val = open("../TerrassaBuildings900/val/annotation.txt", "r")
