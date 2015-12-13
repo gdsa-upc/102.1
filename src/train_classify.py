@@ -31,7 +31,8 @@ def train_clasificador(annotations,path_bow_train):
     bests_params = a.best_params_
     print bests_params
     clf = svm.SVC(C =1, kernel = 'linear', class_weight = weight)
-    clf.fit(dsc,clases)    
+    clf.fit(dsc,clases)  
+    pickle.dump(clf, open("../files/classifier.p", "wb" ) )  
     return clf.predict(dsc)
 
 if __name__ == "__main__":
