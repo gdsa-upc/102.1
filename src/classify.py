@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import os #carreguem la llibreria os per tal d'obtenir la ruta absoluta de la carpeta del projecte
 import pickle
-
-ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
+import train_classify as TRAIN
 
 def classify(features,save_to,trained_model):
     infile_features = open(features,'r') #obrim el fitxer on estan les features
@@ -12,10 +11,9 @@ def classify(features,save_to,trained_model):
     outfile = open(save_to, 'w'); #Creem un fitxer on guardar les classificacions
     outfile.write("ImageID" "\t" "ClassID" "\n")
     
-    
     for image_id, image_features in features_dic.items():
         outfile.write(str(image_id) + "\t" + str(classifier.predict(image_features)[0])+"\n")
     outfile.close()
 
 if __name__ == "__main__":
-    classify(ruta+"/../files/bow_val.p",ruta+"/../files/classified_files.txt", ruta+ "/../files/classifier.p")
+    classify("../files/bow_val.p","../files/classification_val.txt", "../files/classifier.p")

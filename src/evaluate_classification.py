@@ -76,4 +76,4 @@ def evaluate_classification(automatic_classification, ground_truth, val_or_test)
 
 
 ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
-evaluate_classification(ruta+'/files',ruta+'/TerrassaBuildings900/val/annotation.txt',"val")
+evaluate_classification('../files','../TerrassaBuildings900/val/annotation.txt',"val")
