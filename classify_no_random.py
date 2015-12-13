@@ -17,5 +17,5 @@ def classify(features,save_to,trained_model):
         outfile.write(str(image_id) + "\t" + str(classifier.predict(image_features)[0])+"\n")
     outfile.close()
 
-classify(ruta+"/files/bow_train.p",ruta+"/files/archivos_clasificados.txt", ruta+ "/files/classifier.p")
-#classify(ruta+'/files/features_val.p',ruta+"/files", ruta+"/files/labels.txt", "val"); #crida a funció random_classification.
+if __name__ == "__main__":
+    classify(ruta+"/files/bow_train.p",ruta+"/files/archivos_clasificados.txt", ruta+ "/files/classifier.p")
