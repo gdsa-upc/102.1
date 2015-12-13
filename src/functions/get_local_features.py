@@ -11,7 +11,6 @@ def get_local_features(query):
     # detect Difference of Gaussian keypoints in the image
     detector = cv2.FeatureDetector_create("SIFT")
     kps = detector.detect(image)
-    
     # extract RootSIFT descriptors
     rs = RootSIFT()
     (kps, descs) = rs.compute(image, kps)
