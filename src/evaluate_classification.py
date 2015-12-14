@@ -54,7 +54,6 @@ def evaluate_classification(automatic_classification, ground_truth, val_or_test)
     recall = recall_score(ground_truth,automatic,average='macro')
     # CALCULEM EL F1
     f1 = f1_score(ground_truth,automatic,average='macro')
-    
     return cm,labe,accuracy,precision,recall,f1
 
 

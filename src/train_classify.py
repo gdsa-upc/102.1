@@ -9,9 +9,16 @@ def train_classify(annotations,path_bow_train):
     annotations_file = open(annotations,'r') #obrim l'arxiu d'anotacions d'entrenament
     next(annotations_file) #saltem la primera linea de l'arxiu d'anotacions per no llegir-la
     clases = [] #inicialitzem el vector clases
+    for k in bow_train.keys():
+        clases.append(k)
+    ids = []
     for l in annotations_file:
-        line = l[l.index("\t")+1:l.index("\n")]
-        clases.append(line) #fiquem totes les clases que trobem a l'arxiu d'anotacions al vector clases
+        rec = l.split("\t")
+        a = rec[1].split("\n")
+        rec[1] = a[0]
+        for i in range(0, len(clases)):
+            if clases[i] == rec[0]:
+                clases[i] = rec[1]
     dsc = [] #inicialitzem el vector d'arrays que contindrá els descriptors
     for i in bow_train.keys():
         dsc.append(bow_train[i]) #afegim al vector un array amb els bow de cada imatge d'entrenament
@@ -20,20 +27,24 @@ def train_classify(annotations,path_bow_train):
     for k in clases:
         if k not in weight:
             ncl = clases.count(k) #compta el nombre d'elements de cada clase
-            weight[k] = float(len(dsc))/(nclases*ncl) #calculem el pes de cada clase
-    svr = svm.SVC()
-    c = range(1,20) #establim la llista per que vagi de 1 a 20
+            if k == "desconegut":
+                weight[k] = float(len(dsc))/(nclases*ncl) #calculem el pes de cada clase
+            else:
+                weight[k] = float(len(dsc))/(nclases*ncl)
+    svr = svm.SVC(dsc,class_weight = weight)
+    c = [10,1,100,1000,10000,100000] #establim la llista per que vagi de 1 a 20
     params = {'kernel':('linear','rbf'),'C':c}
-    a = grid_search.GridSearchCV(svr,params) #busquem els millors parametres possibles
+    a = grid_search.GridSearchCV(svr,params) #busquem els millors parametres possibles pasar dsc y clases
     a.fit(dsc,clases) 
     best_params = a.best_params_ #guardem els millors parametres a la variable best_params
-    clf = svm.SVC(C = best_params['C'], kernel = best_params['kernel'], class_weight = weight) #cridem al svc amb els millors parametres
+    clf = svm.SVC(C = best_params['C'], kernel = 'linear', class_weight = weight) #cridem al svc amb els millors parametresç
     clf.fit(dsc,clases)  #apliquem el fit per obtenir el model entrenat
     pickle.dump(clf, open("../files/classifier.p", "wb" ))  #guardem el model com a un diccionari
     return clf.predict(dsc)
 
 if __name__ == "__main__":
     r = train_classify("../TerrassaBuildings900/train/annotation.txt","../files/bow_train.p")
+    print "\n"
     print str(list(r).count("desconegut"))
     print str(list(r).count("societat_general"))
     print str(list(r).count("farmacia_albinyana"))
