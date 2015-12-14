@@ -10,7 +10,7 @@ def classify(features,save_to,trained_model):
     classifier = pickle.load(open(trained_model, 'r'))
     #infile_labels = open(labels,'r') #obrim el fitxer on estan les possibles labels
     outfile = open(save_to, 'w'); #Creem un fitxer on guardar les classificacions
-    #outfile.write("ImageID" "\t" "ClassID" "\n")
+    outfile.write("ImageID" "\t" "ClassID" "\n")
     
     
     for image_id, image_features in features_dic.items():
@@ -18,4 +18,4 @@ def classify(features,save_to,trained_model):
     outfile.close()
 
 if __name__ == "__main__":
-    classify(ruta+"/files/bow_train.p",ruta+"/files/archivos_clasificados.txt", ruta+ "/files/classifier.p")
+    classify(ruta+"/files/bow_val.p",ruta+"/files/archivos_clasificados.txt", ruta+ "/files/classifier.p")
