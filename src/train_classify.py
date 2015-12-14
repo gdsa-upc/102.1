@@ -2,7 +2,7 @@
 import pickle
 from sklearn import svm,grid_search
 
-def train_clasificador(annotations,path_bow_train):
+def train_classify(annotations,path_bow_train):
     file_train = open(path_bow_train,'r') #obrim l'arxiu amb els bow d'entrenament
     bow_train = pickle.load(file_train) #carreguem el diccionari
     file_train.close()
@@ -33,7 +33,7 @@ def train_clasificador(annotations,path_bow_train):
     return clf.predict(dsc)
 
 if __name__ == "__main__":
-    r = train_clasificador("../TerrassaBuildings900/train/annotation.txt","../files/bow_train.p")
+    r = train_classify("../TerrassaBuildings900/train/annotation.txt","../files/bow_train.p")
     print str(list(r).count("desconegut"))
     print str(list(r).count("societat_general"))
     print str(list(r).count("farmacia_albinyana"))
