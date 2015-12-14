@@ -25,14 +25,14 @@ def train_clasificador(annotations,path_bow_train):
             ncl = clases.count(k)
             weight[k] = float(len(dsc))/(nclases*ncl)
     svr = svm.SVC()
-    params = {'kernel':('linear','rbf'),'C':[1,3,10,100,1000]}
+    c = range(1,20)
+    params = {'kernel':('linear','rbf'),'C':c}
     a = grid_search.GridSearchCV(svr,params)
     a.fit(dsc,clases)
-    bests_params = a.best_params_
-    print bests_params
-    clf = svm.SVC(C =1, kernel = 'linear', class_weight = weight)
+    best_params = a.best_params_
+    clf = svm.SVC(C = best_params['C'], kernel = best_params['kernel'], class_weight = weight)
     clf.fit(dsc,clases)  
-    pickle.dump(clf, open("../files/classifier.p", "wb" ) )  
+    pickle.dump(clf, open("../files/classifier.p", "wb" ))  
     return clf.predict(dsc)
 
 if __name__ == "__main__":
