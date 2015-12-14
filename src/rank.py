@@ -8,8 +8,8 @@ def rank(features_path,save_path,features_train,val_or_test,annotation):
     out = []
     ordenada = []
     bow_train = 0
-    featuresfile = open(features_path+'/bow_'+val_or_test+'.p','r') #obrim el diccionari de vectors de característiques de validació o de test
-    train_featuresfile = open(features_train,'r') #obrim el diccionari de vectors de característiques d'entrenament
+    rankfiles = pickle.load(open(features_path+'/bow_'+val_or_test+'.p','rb')) #obrim el diccionari de vectors de característiques de validació o de test
+    train = pickle.load(open(features_train,'rb')) #obrim el diccionari de vectors de característiques d'entrenament
     annot = open(annotation+'/'+val_or_test+'/annotation.txt','r') #obrim el fixer anotacions del conjunt de validacio o de test
     desconegut = [] #Creem el vector desconegut en el qual guardarem totes les ids del conjunt de validació o test que tinguin categoria desconegut.
     for line in annot:
@@ -17,8 +17,6 @@ def rank(features_path,save_path,features_train,val_or_test,annotation):
         fin = len(line)
         if str(line[tab+1:fin-1]) == "desconegut":
             desconegut.append(line[0:tab]) #Entrem totes les ids les quals la seva categoria sigui desconegut.
-    rankfiles = pickle.load(featuresfile) #Carreguem el diccionari validació o test
-    train = pickle.load(train_featuresfile) #carreguem el diccionari entrenament
     entrenament = train.keys() #afegim totes les ids segons les tenim ordenades en el diccionari en el vector entrenament
     for k in rankfiles.keys(): #per cada clau del diccionari dels vectors de caracteristiques de validació
                                 #o test ens crearà un fitxer .txt guardat a la seva carpeta corresponent,
@@ -40,8 +38,6 @@ def rank(features_path,save_path,features_train,val_or_test,annotation):
             ordenada = []
             outfile.close()
             # Finalment, totes les ids (key del diccionari de validacio o test) que pertenyen a la classe desconegut seran ignorades a l'hora de crear els rànkings
-    featuresfile.close()
-    train_featuresfile.close()
     annot.close()
 
 if __name__ == "__main__":
