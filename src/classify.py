@@ -18,4 +18,4 @@ def classify(features,save_to,trained_model):
     outfile.close()
 
 if __name__ == "__main__":
-    classify(ruta+"/files/bow_val.p",ruta+"/files/archivos_clasificados.txt", ruta+ "/files/classifier.p")
+    classify(ruta+"/../files/bow_val.p",ruta+"/../files/classified_files.txt", ruta+ "/../files/classifier.p")
