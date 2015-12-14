@@ -44,36 +44,45 @@ def evaluate_classification(automatic_classification, ground_truth, val_or_test)
         ground_truth.append(line[inicio+1:final]) #Afegim les categories a cada entrada de l'array
 
     # CALCULEM LA MATRIU DE CONFUSIO:
-    print("MATRIU DE CONFUSIO:")
     cm = confusion_matrix(ground_truth,automatic)
-    print cm
     labe = np.unique(ground_truth) #ens treu el llistat de les categories en el ground_truth (una categoria només una vegada).
-    plt.figure(1)
-    plot_confusion_matrix(cm,labe,normalize=False)
-    plt.figure(2)
-    plot_confusion_matrix(cm,labe,normalize=True)
-    print("\n")
-    
     # CALCULEM L'ACCURACY
-    print("ACCURACY:")
-    print(accuracy_score(ground_truth,automatic))
-    print("\n")
-    
+    accuracy = accuracy_score(ground_truth,automatic)
     # CALCULEM LA PRECISSION
-    print("PRECISSION:")
-    print(precision_score(ground_truth,automatic,average='macro'))
-    print("\n")
-    
+    precision = precision_score(ground_truth,automatic,average='macro')
     # CALCULEM EL RECALL
-    print("RECALL:")
-    print(recall_score(ground_truth,automatic,average='macro'))
-    print("\n")
-    
+    recall = recall_score(ground_truth,automatic,average='macro')
     # CALCULEM EL F1
-    print("F1:")
-    print(f1_score(ground_truth,automatic,average='macro'))
-    print("\n")
+    f1 = f1_score(ground_truth,automatic,average='macro')
+    
+    return cm,labe,accuracy,precision,recall,f1
 
 
-ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
-evaluate_classification('../files','../TerrassaBuildings900/val/annotation.txt',"val")
+cm,labe,accuracy,precision,recall,f1 = evaluate_classification('../files','../TerrassaBuildings900/val/annotation.txt',"val")
+# CALCULEM LA MATRIU DE CONFUSIO:
+print("MATRIU DE CONFUSIO:")
+plt.figure(1)
+plot_confusion_matrix(cm,labe,normalize=False)
+plt.figure(2)
+plot_confusion_matrix(cm,labe,normalize=True)
+print("\n")
+
+# CALCULEM L'ACCURACY
+print("ACCURACY:")
+print accuracy
+print("\n")
+
+# CALCULEM LA PRECISSION
+print("PRECISSION:")
+print precision
+print("\n")
+
+# CALCULEM EL RECALL
+print("RECALL:")
+print recall
+print("\n")
+
+# CALCULEM EL F1
+print("F1:")
+print f1
+print("\n")
