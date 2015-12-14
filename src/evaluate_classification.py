@@ -28,7 +28,7 @@ def plot_confusion_matrix(cm, true_labels,normalize = False,title='Confusion Mat
 
 
 def evaluate_classification(automatic_classification, ground_truth, val_or_test):
-    automatic_annotation = open(automatic_classification+'/classified_files.txt','r') #obrim el fitxer generat per la funció classify
+    automatic_annotation = open(automatic_classification+"/classification_" + val_or_test + ".txt",'r') #obrim el fitxer generat per la funció classify
     groundtruth_annotation = open(ground_truth, 'r') #obrim el fitxer d'annotacio donat
     automatic = []
     ground_truth = []

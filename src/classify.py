@@ -2,8 +2,6 @@
 import os #carreguem la llibreria os per tal d'obtenir la ruta absoluta de la carpeta del projecte
 import pickle
 
-ruta = os.path.dirname(os.path.abspath(__file__)) #obtenim la ruta absoluta de la carpeta del projecte
-
 def classify(features,save_to,trained_model):
     infile_features = open(features,'r') #obrim el fitxer on estan les features
     features_dic = pickle.load(infile_features) #carreguem el contingut de features a features_dic
@@ -18,4 +16,4 @@ def classify(features,save_to,trained_model):
     outfile.close()
 
 if __name__ == "__main__":
-    classify("../files/bow_val.p","../files/classified_files.txt", "../files/classifier.p")
+    classify("../files/bow_val.p","../files/classification_val.txt", "../files/classifier.p")
