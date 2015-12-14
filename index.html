@@ -1,103 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640">
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
+    <meta charset="UTF-8">
     <title>Building Recognizer by gdsa-upc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
-    <a id="forkme_banner" href="https://github.com/gdsa-upc/Building-Recognizer">View on GitHub</a>
-    <div class="shell">
+    <section class="page-header">
+      <h1 class="project-name">Building Recognizer</h1>
+      <h2 class="project-tagline">projecte del grup 102.1</h2>
+      <a href="https://github.com/gdsa-upc/Building-Recognizer" class="btn">View on GitHub</a>
+      <a href="https://github.com/gdsa-upc/Building-Recognizer/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/gdsa-upc/Building-Recognizer/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Building Recognizer</h1>
-            <h2>projecte del grup 102.1</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+    <section class="main-content">
+      <p>Benvinguts al cercador i classificador visual BUILDING RECOGNIZER (Terrassa Edition).</p>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/gdsa-upc/Building-Recognizer/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/gdsa-upc/Building-Recognizer/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+<h1>
+<a id="qui-som-" class="anchor" href="#qui-som-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Qui som ?</h1>
 
+<p>Som un grup de 4 estudiants del Grau en Enginyeria de Sistemes Audiovisuals de l’Escola d’Enginyeria de Terrassa (Universitat Politècnica de Catalunya).</p>
 
-      <span class="banner-fix"></span>
+<h1>
+<a id="el-nostre-programa" class="anchor" href="#el-nostre-programa" aria-hidden="true"><span class="octicon octicon-link"></span></a>El nostre programa</h1>
 
-
-      <section id="main_content">
-        <p>Benvinguts al cercador i classificador visual BUILDING RECOGNIZER (Terrassa Edition).
-Som un grup de 4 estudiants del Grau en Enginyeria de Sistemes Audiovisuals de l’Escola d’Enginyeria de Terrassa (Universitat Politècnica de Catalunya). 
-Estem desenvolupant un programa de cerca visual basat en la visió per computador que ens permeti identificar diferents edificis i/o monuments emblemàtics d’una de les ciutats més importants del Vallès Occidental, com és Terrassa.
+<p>Estem desenvolupant un programa de cerca visual basat en la visió per computador que ens permeti identificar diferents edificis i/o monuments emblemàtics d’una de les ciutats més importants del Vallès Occidental, com és Terrassa.
 Primer de tot, hem creat una base de dades amb diferents categories. De moment, aquesta base de dades consta de 12 categories corresponents a 12 edificis diferents de la ciutat de Terrassa i a una 13a categoria anomenada edificis desconeguts.</p>
 
 <p>Aquest programa funcionarà a partir d’una fotografia la qual podrà ser identificada de dues maneres: </p>
 
 <ul>
+<li>El programa ens farà un rànking dels edificis els quals creu que pertany la fotografia.</li>
 <li>El programa classificarà la fotografia en una de les categories que tenim a la nostra base de dades del nostre programa,      ja sigui en un dels 12 edificis o a la categoria número 13 anomenada edificis desconeguts.<br>
 </li>
-<li>El programa ens farà un rànking dels edificis els quals creu que pertany la fotografia.</li>
 </ul>
 
 <p>Estem desenvolupant el nostre programa amb el llenguatge Python i la llibreria OpenCV.</p>
 
-<p>Desenvolupament del nostre programa:
-El nostre projecte és una proposta dels nostres professors de l’assignatura de Gestió i Distribució de Senyals Audiovisuals i ens han marcat varies entregues per poder dur a terme el nostre projecte.
+<h1>
+<a id="desenvolupament-del-nostre-programa" class="anchor" href="#desenvolupament-del-nostre-programa" aria-hidden="true"><span class="octicon octicon-link"></span></a>Desenvolupament del nostre programa</h1>
+
+<h2>
+<a id="inicis" class="anchor" href="#inicis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inicis</h2>
+
+<p>El nostre projecte és una proposta dels nostres professors de l’assignatura de Gestió i Distribució de Senyals Audiovisuals i ens han marcat varies entregues per poder dur a terme el nostre projecte.
 La primera setmana vam haver de crear la nostra base de dades i fer els primers passos en el llenguatge de Python i en algoritmes de visió per computador, fent un petit script el qual treia els punts d’interès a partir d’una imatge. Nosaltres ens vam decidir per utilitzar l’algoritme SURF implementat en la llibreria OpenCV. 
-A l’hora de crear la nostre base de dades, els nostres professors van repartir la feina d’aconseguir 50 fotografies de cada una de les categories, indicades abans, en diferents grups. Al nostre grup l’hi va tocar recopilar fotografies de les classes: Escola d’enginyeria de Terrassa i Catedral de Terrassa. A part, cada grup havia d’aconseguir 50 fotos per a la categoria desconegut. Aquestes imatges, que es poden veure més a baix, són un exemple de les imatges que es troben a la nostra base de dades:</p>
+A l’hora de crear la nostre base de dades, els nostres professors van repartir la feina d’aconseguir 50 fotografies de cada una de les categories, indicades abans, en diferents grups. Al nostre grup li va tocar recopilar fotografies de les classes: Escola d’enginyeria de Terrassa i Catedral de Terrassa. A part, cada grup havia d’aconseguir 50 fotos per a la categoria desconegut. Aquestes imatges, que es poden veure més a baix, són un exemple de les imatges que es troben a la nostra base de dades:</p>
 
 <p><img src="http://i65.tinypic.com/2en291i.jpg" alt="Escola d'Enginyeria de Terrassa">
-<img src="http://i68.tinypic.com/21e2rdh.jpg" alt="Catedral de Terrassa"></p>
+<img src="http://i68.tinypic.com/21e2rdh.jpg" alt="Catedral de Terrassa">
+ <a href="https://docs.google.com/presentation/d/1j4XhgKo5sl_OgJhbl1cTukef9B3PBcNmTa4dFhrjFWE/edit#slide=id.p">1a entrega</a></p>
 
-<p>La segona setmana vam crear un primer borrador del que serà el nostre programa final, el qual tindrà dos resultats, com ja hem dit abans: Classificador d’imatges segons la categoria i el Search Visual Engine (Crear rànquings de quines imatges s’assemblen més a partir de treure les principals característiques dels principals punts d’interès de cada imatge). Però el nostre primer borrador, per tenir una idea clara del que volíem sense complicar-ho massa, el vam fer amb tots els valors i resultats aleatoris. Per tant, tots els nostres resultats van ser molt dolents, però ja és el que buscàvem.</p>
+<h2>
+<a id="primer-borrador" class="anchor" href="#primer-borrador" aria-hidden="true"><span class="octicon octicon-link"></span></a>Primer borrador</h2>
+
+<p>La segona setmana vam crear un primer borrador del que serà el nostre programa final, el qual tindrà dos resultats, com ja hem dit abans: Classificador de imatges segons la categoria i el Search Visual Engine (Crear rànquings de quines imatges s’assemblen més a partir de treure les principals característiques dels principals punts d’interès de cada imatge). Però el nostre primer borrador, per tenir una idea clara del que volíem sense complicar-ho massa, el vam fer amb tots els valors i resultats aleatoris. Per tant, tots els nostres resultats van ser molt dolents, però ja és el que buscàvem.</p>
+
+<p><a href="https://docs.google.com/presentation/d/1vaIgvMihRCzGw4zdUQQOoQhxdtMMelmlG6Q2tIG4MpU/edit#slide=id.gd92b9f130_2_0">2a entrega</a></p>
+
+<h2>
+<a id="search-visual-engine" class="anchor" href="#search-visual-engine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Search Visual Engine</h2>
 
 <p>La tercera setmana hem estat treballant amb una de les dos parts principals del nostre programa: El Serach Visual Engine. La part principal d’aquesta entrega ha estat entrenar el nostre programa a partir de l’algoritme k-means, el qual és un algoritme de clustering que divideix les nostres imatges que tenim reservades per entrenar el nostre programa en diverses regions. Quan ja tenim aquestes regions, agafem les imatges que tenim reservades per a la validació del nostre programa i classifiquem els seus descriptors de característiques dins de cada regió i, finalment treiem un vector de característiques per a cada imatge. A partir d’aquest vector creem els rànkings de les imatges del conjunt de validació depenent de a quina imatge del conjunt d’entrenament s’assemblin més. Els resultats d’aquesta setmana ja tenen sentit i el nostre programa comença a assemblar-se al programa que volem fer.</p>
 
-<p>Per a la setmana vinent, treballarem l’altre part de l’esquelet del nostre programa: el Classificador.</p>
+<p><a href="https://docs.google.com/presentation/d/1aKA3NKxA33cYNE2jSLvl8xUe5T-JnWQb4S2QtLYlh_0/edit?usp=drive_web">3a entrega</a></p>
 
-<p>Enllaços a les presentacions de les nostres entregues de cada setmana:</p>
+<h2>
+<a id="classificador" class="anchor" href="#classificador" aria-hidden="true"><span class="octicon octicon-link"></span></a>Classificador</h2>
 
-<ul>
-<li><a href="https://docs.google.com/presentation/d/1j4XhgKo5sl_OgJhbl1cTukef9B3PBcNmTa4dFhrjFWE/edit#slide=id.p">1a entrega</a></li>
-<li><a href="https://docs.google.com/presentation/d/1vaIgvMihRCzGw4zdUQQOoQhxdtMMelmlG6Q2tIG4MpU/edit#slide=id.gd92b9f130_2_0">2a entrega</a></li>
-<li><a href="https://docs.google.com/presentation/d/1aKA3NKxA33cYNE2jSLvl8xUe5T-JnWQb4S2QtLYlh_0/edit?usp=drive_web">3a entrega</a></li>
-</ul>
-      </section>
+<p>La quarta setmana hem estat treballant amb la segona part de l'esquelet del nostre programa: El classificador. La part principal d'aquesta entrega ha estat entrenar el nostre programa per a que pugui classificar segons la categoria. Pe això hem utilitzat l'algoritme SVM. Hem hagut de tenir en compte un punt important: que tenim moltes més imatges de la classe desconegut. Per tant a l'hora d'utilitzar l'algoritme hem donat menys pes a les imatges amb categoria desconegut.</p>
 
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/gdsa-upc">gdsa-upc</a> can be found on <a href="https://github.com/gdsa-upc/Building-Recognizer">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
+<p><a href="https://drive.google.com/open?id=1AC1vCl3m-CxiOO8SzUCRxy3bN9Rk4fCI0-2WSdBdHYg">4a entrega</a></p>
+
+<h2>
+<a id="per-a-la-setmana-vinent" class="anchor" href="#per-a-la-setmana-vinent" aria-hidden="true"><span class="octicon octicon-link"></span></a>Per a la setmana vinent...</h2>
+
+<p>Acabarem de fer funcionar el nostre programa i el millorarem per fer-lo més eficient i més acertat.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/gdsa-upc/Building-Recognizer">Building Recognizer</a> is maintained by <a href="https://github.com/gdsa-upc">gdsa-upc</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
 
-    </div>
+    </section>
 
-    
+  
   </body>
 </html>
