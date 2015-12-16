@@ -29,7 +29,7 @@ def save_bow(centroides,dsc,val_or_train,nclusters):
 
 if __name__ == "__main__":
     dsc_all_train, dsc_ind_train = get_descriptors("../TerrassaBuildings900/train/images") #obtenim els descriptors de les imatges d'entrenament
-    nclusters = 700 #fixem el número de clusters
+    nclusters = 512 #fixem el número de clusters
     centroides = train(dsc_all_train,nclusters) #calculem els centroides del codebook
     save_bow(centroides,dsc_ind_train,"train",nclusters) #calculem i dessem els bow de les imatges d'entrenament
     _, dsc_ind_val = get_descriptors("../TerrassaBuildings900/val/images") #obtenim els descriptors de validació
