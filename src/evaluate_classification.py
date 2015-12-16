@@ -31,17 +31,21 @@ def evaluate_classification(automatic_classification, ground_truth, val_or_test)
     automatic_annotation = open(automatic_classification+'/classification_'+val_or_test+'.txt','r') #obrim el fitxer generat per la funció classify
     groundtruth_annotation = open(ground_truth, 'r') #obrim el fitxer d'annotacio donat
     automatic = []
-    ground_truth = []
+    id_automatic = []
     next(automatic_annotation) #Saltem la primera linia del fitxer
     for line in automatic_annotation:
         inicio = line.index("\t")
-        final = len(line)
+        final = line.index("\n")
+        id_automatic.append(line[0:inicio])
         automatic.append(line[inicio+1:final]) #Afegim les categories a cada entrada de l'array
     next(groundtruth_annotation) #Saltem la primera linia del fitxer
-    for line in groundtruth_annotation:
-        inicio = line.index("\t")
-        final = len(line)
-        ground_truth.append(line[inicio+1:final]) #Afegim les categories a cada entrada de l'array
+    ground_truth = range(0, len(id_automatic))
+    for l in groundtruth_annotation:
+        id_annot = l[0:l.index("\t")]
+        clase_annot = l[l.index("\t")+1:l.index("\n")]
+        for i in range(0, len(id_automatic)):
+            if id_automatic[i] == id_annot:
+               ground_truth[i] = clase_annot
 
     # CALCULEM LA MATRIU DE CONFUSIO:
     cm = confusion_matrix(ground_truth,automatic)
