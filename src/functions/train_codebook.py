@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from get_local_features import get_local_features
+#from get_local_features import get_local_features
 from sklearn.cluster import MiniBatchKMeans
 import matplotlib.pyplot as plt
 def train_codebook(nclusters,normalized_descriptors):

@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-    
 import os
 from scipy.cluster.vq import vq
-from get_local_features import get_local_features
+#from get_local_features import get_local_features
 from train_codebook import train_codebook
 from sklearn.cluster import MiniBatchKMeans
 

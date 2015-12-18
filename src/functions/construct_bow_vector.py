@@ -2,7 +2,7 @@
 import numpy as np
 from sklearn import preprocessing
 import os
-from get_local_features import get_local_features
+#from get_local_features import get_local_features
 from train_codebook import train_codebook
 from compute_assignments import compute_assignments
 import pickle
