@@ -25,10 +25,17 @@ def rank(features_path,save_path,features_train,val_or_test,annotation):
                                 #el qual tindrà el rànking aleatori de les claus del diccionari d'entrenament
         if desconegut.count(k) == 0: #Si la id (key del diccionari de validacio o test) no apareix en el vector desconeguts, que ens calculi el rànking.
             outfile = open(save_path+'/ranking_'+val_or_test+'/'+k+'.txt','w')
-            bow = rankfiles[k] #treiem el vector de caracteristiques de cada id de validació o de test 
+            bow1 = rankfiles[k][0] #treiem el vector de caracteristiques de cada id de validació o de test 
+            bow2 = rankfiles[k][1]
             for k2 in train.keys():
-                bow_train = train[k2] #treiem el vector de caracteristiques de cada id d'entrenament
-                dist = pairwise_distances(bow,bow_train,metric='euclidean',n_jobs=1) #calculem les distancies euclidees entre el Bow de validació/test i els BOW d'entrenament
+                bow_train1 = train[k2][0] #treiem el vector de caracteristiques de cada id d'entrenament
+                bow_train2 = train[k2][1]
+                dist1 = pairwise_distances(bow1,bow_train1,metric='euclidean',n_jobs=1) #calculem les distancies euclidees entre el Bow de validació/test i els BOW d'entrenament
+                dist2 = pairwise_distances(bow2,bow_train2,metric='euclidean',n_jobs=1)
+                if dist1 <= dist2:
+                    dist = dist1
+                else:
+                    dist = dist2
                 out.append(dist) #Guardem les distancies en out (cada distància esta guardada en aquest vector que la seva corresponent id en el vector d'entrenament)
                 bow_train = 0
             ordenada = sorted(out) #Ordenem la llista out de menys a més distància a la imatge que estem estudiant. Ho guardem a l'array ordenada.
