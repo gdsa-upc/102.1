@@ -51,10 +51,10 @@ if __name__ == "__main__":
     pickle.dump(bow_train,open("../files/bow_train.p",'wb'))
     _, dsc_ind_val_rootSIFT = get_descriptors_rootSIFT("../TerrassaBuildings900/val/images") #obtenim els descriptors de validació
     _,dsc_ind_val_SURF = get_descriptors_SURF("../TerrassaBuildings900/val/images")
-    bow_SURF = save_bow(centroides_SURF,dsc_ind_val_SURF,nclusters) #guardem els bow de les imatges de validació"""
-    bow_rootSIFT = save_bow(centroides_rootSIFT,dsc_ind_val_rootSIFT,nclusters) #guardem els bow de les imatges de validació"""
-    bows = [bow_rootSIFT,bow_SURF]
+    bow_SURF_val = save_bow(centroides_SURF,dsc_ind_val_SURF,nclusters) #guardem els bow de les imatges de validació"""
+    bow_rootSIFT_val = save_bow(centroides_rootSIFT,dsc_ind_val_rootSIFT,nclusters) #guardem els bow de les imatges de validació"""
+    bowsv = [bow_rootSIFT_val,bow_SURF_val]
     bow_val = dict()
-    for k in bow_rootSIFT.iterkeys():
-        bow_val[k] = tuple(bow_val[k] for bow_val in bows)
-    pickle.dump(bow_train,open("../files/bow_val.p",'wb'))
+    for k in bow_rootSIFT_val.iterkeys():
+        bow_val[k] = tuple(bow_val[k] for bow_val in bowsv)
+    pickle.dump(bow_val,open("../files/bow_val.p",'wb'))

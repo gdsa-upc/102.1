@@ -2,7 +2,7 @@
 import numpy as np
 from sklearn import preprocessing
 import os
-#from get_local_features import get_local_features
+from get_local_features import get_local_features_rootSIFT
 from train_codebook import train_codebook
 from compute_assignments import compute_assignments
 import pickle
@@ -23,7 +23,7 @@ if __name__ == "__main__":
     dsc_ind = {} #inicialitzem el vector que contindrá tots els descriptors de cada imatge
     for file in nfiles:
         filename = file[0:file.index(".")] #obtenim el nom de l'arxiu
-        dsc_ind[filename] = get_local_features("../imagen_primerscript/" + file) #dessem els descriptors de la imatge corresponent
+        dsc_ind[filename] = get_local_features_rootSIFT("../imagen_primerscript/" + file) #dessem els descriptors de la imatge corresponent
         for feat in dsc_ind[filename]:
             dsc.append(feat) #dessem tots els descriptors de totes les imatges al vector
     codebook,k = train_codebook(5,dsc) #entrenem el codebook
