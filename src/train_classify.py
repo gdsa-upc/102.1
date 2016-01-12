@@ -33,11 +33,12 @@ def train_classify(annotations,path_bow_train):
                 weight[k] = float(len(dsc))/(nclases*ncl)
     svr = svm.SVC(dsc,class_weight = weight)
     c = [10,1,100,1000,10000,100000] #establim la llista per que vagi de 1 a 20
-    params = {'kernel':('linear','rbf'),'C':c}
+    g = [1.0,0.1,0.001,0.0001]
+    params = {'kernel':('linear','rbf','poly','sigmoid'),'C':c, 'gamma':g}
     a = grid_search.GridSearchCV(svr,params) #busquem els millors parametres possibles pasar dsc y clases
     a.fit(dsc,clases) 
     best_params = a.best_params_ #guardem els millors parametres a la variable best_params
-    clf = svm.SVC(C = best_params['C'], kernel = 'linear', class_weight = weight) #cridem al svc amb els millors parametresç
+    clf = svm.SVC(C = best_params['C'], kernel = best_params['kernel'],gamma = best_params['gamma'], class_weight = weight) #cridem al svc amb els millors parametresç
     clf.fit(dsc,clases)  #apliquem el fit per obtenir el model entrenat
     pickle.dump(clf, open("../files/classifier.p", "wb" ))  #guardem el model com a un diccionari
     return clf.predict(dsc)
